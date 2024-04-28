@@ -1,0 +1,23 @@
+{
+  "Version": 1,
+  "Hash": "cBnegFUeR8zNM2unbXaUBgqlSp4mzIe6mDH0A0CNjPo=",
+  "Source": "GaNamCakeShop_v2.0.Server",
+  "BasePath": "_content/GaNamCakeShop_v2.0.Server",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [
+    {
+      "Identity": "D:\\Computing Documents\\Web-app Development\\Gà Nấm Cake Shop v2.0\\ganamcakeshop_v2.0.client\\ganamcakeshop_v2.0.client.esproj",
+      "Version": 2,
+      "Source": "ganamcakeshop_v2.0.client",
+      "GetPublishAssetsTargets": "GetCurrentProjectPublishStaticWebAssetItems",
+      "AdditionalPublishProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier;SelfContained",
+      "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
+      "AdditionalBuildProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier;SelfContained"
+    }
+  ],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

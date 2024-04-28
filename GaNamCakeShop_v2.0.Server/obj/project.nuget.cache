@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "dgSpecHash": "fR9emmlC7mjgo0dHUsahEc75EEzGON2UCfISCAkB5rHTDiWxB7agqXD/7gu2LKxWH7j7VVk7uhdKb9pXwLjfDA==",
+  "success": true,
+  "projectFilePath": "D:\\Computing Documents\\Web-app Development\\Gà Nấm Cake Shop v2.0\\GaNamCakeShop_v2.0.Server\\GaNamCakeShop_v2.0.Server.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\homan\\.nuget\\packages\\microsoft.aspnetcore.spaproxy\\8.0.4\\microsoft.aspnetcore.spaproxy.8.0.4.nupkg.sha512",
+    "C:\\Users\\homan\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "C:\\Users\\homan\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\homan\\.nuget\\packages\\swashbuckle.aspnetcore\\6.4.0\\swashbuckle.aspnetcore.6.4.0.nupkg.sha512",
+    "C:\\Users\\homan\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.4.0\\swashbuckle.aspnetcore.swagger.6.4.0.nupkg.sha512",
+    "C:\\Users\\homan\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.4.0\\swashbuckle.aspnetcore.swaggergen.6.4.0.nupkg.sha512",
+    "C:\\Users\\homan\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.4.0\\swashbuckle.aspnetcore.swaggerui.6.4.0.nupkg.sha512"
+  ],
+  "logs": []
+}

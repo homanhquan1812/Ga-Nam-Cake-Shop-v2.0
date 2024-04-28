@@ -1,0 +1,6 @@
+@GaNamCakeShop_v2._0.Server_HostAddress = http://localhost:5123
+
+GET {{GaNamCakeShop_v2._0.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

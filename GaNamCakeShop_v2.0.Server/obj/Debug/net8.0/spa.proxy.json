@@ -1,0 +1,10 @@
+{
+"SpaProxyServer": {
+"ServerUrl": "https://localhost:5173",
+"RedirectUrl": "",
+"LaunchCommand": "npm run dev",
+"WorkingDirectory": "D:\\Computing Documents\\Web-app Development\\Gà Nấm Cake Shop v2.0\\GaNamCakeShop_v2.0.Server\\..\\ganamcakeshop_v2.0.client",
+"MaxTimeoutInSeconds": "120",
+"KeepRunning": "false"
+}
+}

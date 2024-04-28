@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\GaNamCakeShop_v2.0.Server.props" />
+</Project>
