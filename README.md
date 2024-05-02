@@ -5,14 +5,14 @@
 This website is designed to facilitate convenient online ordering from our cake shop, ensuring prompt delivery of your selected products at your doorstep.
 
 # Website address
-> https://ganamcakeshop.onrender.com/
+(None)
 
 # Technologies used to build this website
 1. Front-end: <b>HTML, CSS, SCSS, Javascript</b>.
-2. Back-end: <b>ASP.NET Core</b>
+2. Back-end: <b>ASP.NET Core</b>.
 3. NoSQL Database: <b>MongoDB</b>.
 4. Cloud Database: <b>MongoDB Atlas</b>.
-5. Hosting: <b>Render</b> (free).
+5. Hosting: (None).
 
 > Basically, hosting a website that people can access can't depend on an offline database. That's why our team uses MongoDB Atlas to let it connect to Render, so that the website can work perfectly.
 
