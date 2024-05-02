@@ -11,6 +11,7 @@ builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection("C
 builder.Services.AddSingleton<StaffsServices>();
 // Products
 builder.Services.AddSingleton<ProductsServices>();
+
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddControllers();
