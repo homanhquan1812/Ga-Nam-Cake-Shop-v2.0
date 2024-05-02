@@ -25,7 +25,10 @@ This website is designed to facilitate convenient online ordering from our cake 
 
 # How to use
 1. Open this project solution on <b>Visual Studio</b>.
-2. Extract <b>JSON Data.zip</b> and insert all JSON files into your MongoDB database.
+2. Extract <b>JSON Data.zip</b> and insert all JSON files into your MongoDB database like this:
+
+   ![image](https://github.com/homanhquan1812/Ga-Nam-Cake-Shop-v2.0/assets/130955957/44f42d70-9cb3-427c-b7d2-0d8765108159)
+
 3. Run the project.
 4. Use these accounts to log in to the website:
    - <b>Customer</b>: maimai456 - Mai@456#1990
