@@ -1,7 +1,28 @@
-import React from 'react'
+import { React, useState, useEffect } from 'react';
 import Ma_OrdersHead from '../../../components/Staffs/Managers/Ma_OrdersHead'
 
 const Ma_Orders = () => {
+    const [orders, setOrders] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const response = await fetch('https://localhost:5173/api/orders');
+            // const response = await fetch('https://yolohome-homanhquan-api.onrender.com/dashboard');
+            if (!response.ok) {
+              throw new Error('Failed to fetch data');
+            }
+            const data = await response.json();
+            setStaffs(data);
+          } catch (error) {
+            console.error('Error fetching data:', error);
+          }
+        };
+    
+        // Fetch data initially
+        fetchData();
+      }, []);
+
   return (
     <div>
     <Ma_OrdersHead />

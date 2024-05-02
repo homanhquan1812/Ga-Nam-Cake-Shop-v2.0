@@ -1,7 +1,28 @@
-import React from 'react'
+import { React, useState, useEffect } from 'react';
 import Ma_StaffsHead from '../../../components/Staffs/Managers/Ma_StaffsHead'
 
 const Ma_Staffs = () => {
+    const [staffs, setStaffs] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const response = await fetch('https://localhost:5173/api/staffs');
+            // const response = await fetch('https://yolohome-homanhquan-api.onrender.com/dashboard');
+            if (!response.ok) {
+              throw new Error('Failed to fetch data');
+            }
+            const data = await response.json();
+            setStaffs(data);
+          } catch (error) {
+            console.error('Error fetching data:', error);
+          }
+        };
+    
+        // Fetch data initially
+        fetchData();
+      }, []);
+
   return (
     <div>
     <Ma_StaffsHead />
@@ -126,9 +147,7 @@ const Ma_Staffs = () => {
                     <input type="type" id="csw_position" name="csw_position" placeholder="Position" />
                     <input type="type" id="csw_department" name="csw_department" placeholder="Department" />
                 </form>
-                </div>
-                {'{'}{'{'}#each csw_info{'}'}{'}'}
-                {'{'}{'{'}/each{'}'}{'}'}                                    
+                </div>                                
                 <table style={{marginTop: '20px'}}>
                 <thead>
                     <tr>
@@ -143,63 +162,38 @@ const Ma_Staffs = () => {
                     <th>Action</th>
                     </tr>
                 </thead>
-                <tbody><tr>
-                    <td>{'{'}{'{'}sum @index 1{'}'}{'}'}</td>
-                    <td>{'{'}{'{'}this.csw_name{'}'}{'}'}</td>
-                    <td>{'{'}{'{'}this.csw_gender{'}'}{'}'}</td>
-                    <td>{'{'}{'{'}this.csw_phonenumber{'}'}{'}'}</td>
-                    <td>{'{'}{'{'}this.csw_username{'}'}{'}'}</td>
-                    <td>{'{'}{'{'}this.csw_emailaddress{'}'}{'}'}</td>
-                    <form method="POST" id="updateForm{{@index}}" name="updateForm{{@index}}" action="/managers/{{this._id}}?_method=PUT" />
-                    <td>             
-                        <div className="currentPosition">
-                        {'{'}{'{'}this.csw_position{'}'}{'}'}
-                        </div>                           
-                        <div className="changeCurrentPosition"> 
-                        <input type="type" className="form-control" defaultValue="{{this.csw_position}}" name="csw_position" />
-                        {/*
-                                                        <select name="selectposition" id="selectposition">
-                                                            <optgroup label="Select position">
-                                                                <option {{#if (eq this.csw_position 'Manager')}} selected {{/if}}>Manager</option>
-                                                                <option {{#unless (eq this.csw_position 'Manager')}} selected {{/unless}}>Employee</option>
-                                                            </optgroup>
-                                                        </select>
-                                                        */}
-                        {/* <input style="margin-top: 5px; background-color: yellow; padding: 2px;"  type="submit" value="Submit" /> */}
-                        </div>
-                    </td>
-                    <td>
-                        <div className="currentDepartment">
-                        {'{'}{'{'}this.csw_department{'}'}{'}'}
-                        </div>                           
-                        <div className="changeCurrentDepartment">
-                        <input type="type" className="form-control" defaultValue="{{this.csw_department}}" name="csw_department" />
-                        {/*
-                                                        <select name="selectdepartment" id="selectdepartment">
-                                                            <optgroup label="Select Department">
-                                                                <option {{#if (eq this.csw_department 'Cake Cook')}} selected="selected"{{/if}}>Cake Cook</option>
-                                                                <option {{#if (eq this.csw_department 'Cupcake Creations')}} selected="selected"{{/if}}>Cupcake Creations</option>
-                                                                <option {{#if (eq this.csw_department 'Chocolate Delights')}} selected="selected"{{/if}}>Chocolate Delights</option>
-                                                                <option {{#if (eq this.csw_department 'Frosty Treats')}} selected="selected"{{/if}}>Frosty Treats</option>
-                                                                <option {{#if (eq this.csw_department 'Sweet Innovations')}} selected="selected"{{/if}}>Sweet Innovations</option>
-                                                                <option {{#if (eq this.csw_department 'Tasty Tarts')}} selected="selected"{{/if}}>Tasty Tarts</option>
-                                                                <option {{#if (eq this.csw_department 'Creamy Confections')}} selected="selected"{{/if}}>Creamy Confections</option>
-                                                                <option {{#if (eq this.csw_department 'Fruity Delights')}} selected="selected"{{/if}}>Fruity Delights</option>
-                                                                <option {{#if (eq this.csw_department 'Velvet Vanilla')}} selected="selected"{{/if}}>Velvet Vanilla</option>
-                                                                <option {{#if (eq this.csw_department 'Divine Desserts')}} selected="selected"{{/if}}>Divine Desserts</option>
-                                                            </optgroup>
-                                                        </select>
-                                                        */}
-                        {/* <input style="margin-top: 5px; background-color: yellow; padding: 2px;"  type="submit" value="Submit" /> */}
-                        </div>
-                    </td>
-                    <td>
-                        {'{'}{'{'}#unless (eq this.csw_position "Manager"){'}'}{'}'}
-                        <button type="button" className="btn btn-danger" data-toggle="modal" data-id="{{this._id}}" data-target="#delete-course-modal">Remove</button>
-                        {'{'}{'{'}/unless{'}'}{'}'}
-                    </td>
-                    </tr>
-                    <tr /><tr />
+                <tbody>
+                    {(() => {
+                        let counter = 0;
+                        return staffs && staffs.map((staff, index) => (
+                            !staff.deleted && (
+                                <tr key={staff.id}>
+                                    <td>{++counter}</td>
+                                    <td>{staff.csw_name}</td>
+                                    <td>{staff.csw_gender}</td>
+                                    <td>{staff.csw_phonenumber}</td>
+                                    <td>{staff.csw_username}</td>
+                                    <td>{staff.csw_emailaddress}</td>
+                                    <td>
+                                        <form method="POST" id={`updateForm${index}`} name={`updateForm${index}`} action={`/managers/${staff._id}?_method=PUT`} />
+                                        <div className="currentPosition">
+                                            {staff.csw_position}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div className="currentDepartment">
+                                            {staff.csw_department}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        {staff.csw_position !== "Manager" &&
+                                            <button type="button" className="btn btn-danger" data-toggle="modal" data-id={staff._id} data-target="#delete-course-modal">Remove</button>
+                                        }
+                                    </td>
+                                </tr>
+                            )
+                        ))
+                    })()}
                 </tbody>
                 </table>
                 {/*

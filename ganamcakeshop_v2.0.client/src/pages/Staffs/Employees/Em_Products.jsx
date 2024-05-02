@@ -1,7 +1,28 @@
-import React from 'react'
+import { React, useState, useEffect } from 'react';
 import Em_ProductsHead from '../../../components/Staffs/Employees/Em_ProductsHead'
 
 const Em_Products = () => {
+    const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const response = await fetch('https://localhost:5173/api/products');
+            // const response = await fetch('https://yolohome-homanhquan-api.onrender.com/dashboard');
+            if (!response.ok) {
+              throw new Error('Failed to fetch data');
+            }
+            const data = await response.json();
+            setProducts(data);
+          } catch (error) {
+            console.error('Error fetching data:', error);
+          }
+        };
+    
+        // Fetch data initially
+        fetchData();
+      }, []);
+
   return (
     <div>
     <Em_ProductsHead />
@@ -102,9 +123,6 @@ const Em_Products = () => {
                 <div className="middle">
                 </div>
                 <input type="text" id="product-searchbar" onkeyup="myFunction()" placeholder="Search for product." />
-                {'{'}{'{'}#each products{'}'}{'}'}
-                {'{'}{'{'}else{'}'}{'}'}
-                {'{'}{'{'}/each{'}'}{'}'}
                 <table style={{marginTop: '20px'}} id="myTable">
                 <thead>
                     <tr>
@@ -117,19 +135,23 @@ const Em_Products = () => {
                     <th style={{width: '5%'}}>Action</th>
                     </tr>
                 </thead>
-                <tbody><tr>
-                    <td>{'{'}{'{'}sum @index 1{'}'}{'}'}</td>
-                    <td>{'{'}{'{'}this.csw_products{'}'}{'}'}</td>
-                    <td><img src="{{this.photo}}" alt="{{this.csw_products}}" className="photo" /></td>
-                    <td>{'{'}{'{'}this.createdAt{'}'}{'}'}</td>
-                    <td>{'{'}{'{'}this.type{'}'}{'}'}</td>
-                    <td>{'{'}{'{'}this.description{'}'}{'}'}</td>
-                    <td>{'{'}{'{'}this.price{'}'}{'}'} VND</td>
-                    </tr><tr>
-                    <td colSpan={7} className="text-center">
-                        No products added here yet.
-                    </td>
-                    </tr><tr />
+                <tbody>
+                    {(() => {
+                        let counter = 0;
+                        return products && products.map((product) => (
+                            !product.deleted && (
+                                <tr key={product.id}>
+                                <td>{++counter}</td>
+                                <td>{product.csw_products}</td>
+                                <td><img src={product.photo} alt={product.csw_products} className="photo" /></td>
+                                <td>{product.createdAt}</td>
+                                <td>{product.type}</td>
+                                <td>{product.description}</td>
+                                <td>{product.price}</td>
+                            </tr>
+                            )
+                        ))
+                    })()}
                 </tbody>
                 </table>
                 {/*

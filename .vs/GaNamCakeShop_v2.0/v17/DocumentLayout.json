@@ -1,12 +1,173 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\Computing Documents\\Web-app Development\\G\u00E0 N\u1EA5m Cake Shop v2.0\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{6EAA8931-DB7D-4CC5-B9B5-1FC258444445}|GaNamCakeShop_v2.0.Server\\GaNamCakeShop_v2.0.Server.csproj|d:\\computing documents\\web-app development\\g\u00E0 n\u1EA5m cake shop v2.0\\ganamcakeshop_v2.0.server\\models\\products.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6EAA8931-DB7D-4CC5-B9B5-1FC258444445}|GaNamCakeShop_v2.0.Server\\GaNamCakeShop_v2.0.Server.csproj|solutionrelative:ganamcakeshop_v2.0.server\\models\\products.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6EAA8931-DB7D-4CC5-B9B5-1FC258444445}|GaNamCakeShop_v2.0.Server\\GaNamCakeShop_v2.0.Server.csproj|d:\\computing documents\\web-app development\\g\u00E0 n\u1EA5m cake shop v2.0\\ganamcakeshop_v2.0.server\\services\\productsservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6EAA8931-DB7D-4CC5-B9B5-1FC258444445}|GaNamCakeShop_v2.0.Server\\GaNamCakeShop_v2.0.Server.csproj|solutionrelative:ganamcakeshop_v2.0.server\\services\\productsservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6EAA8931-DB7D-4CC5-B9B5-1FC258444445}|GaNamCakeShop_v2.0.Server\\GaNamCakeShop_v2.0.Server.csproj|d:\\computing documents\\web-app development\\g\u00E0 n\u1EA5m cake shop v2.0\\ganamcakeshop_v2.0.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6EAA8931-DB7D-4CC5-B9B5-1FC258444445}|GaNamCakeShop_v2.0.Server\\GaNamCakeShop_v2.0.Server.csproj|solutionrelative:ganamcakeshop_v2.0.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6EAA8931-DB7D-4CC5-B9B5-1FC258444445}|GaNamCakeShop_v2.0.Server\\GaNamCakeShop_v2.0.Server.csproj|d:\\computing documents\\web-app development\\g\u00E0 n\u1EA5m cake shop v2.0\\ganamcakeshop_v2.0.server\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{6EAA8931-DB7D-4CC5-B9B5-1FC258444445}|GaNamCakeShop_v2.0.Server\\GaNamCakeShop_v2.0.Server.csproj|solutionrelative:ganamcakeshop_v2.0.server\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6EAA8931-DB7D-4CC5-B9B5-1FC258444445}|GaNamCakeShop_v2.0.Server\\GaNamCakeShop_v2.0.Server.csproj|d:\\computing documents\\web-app development\\g\u00E0 n\u1EA5m cake shop v2.0\\ganamcakeshop_v2.0.server\\settings\\databasesettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6EAA8931-DB7D-4CC5-B9B5-1FC258444445}|GaNamCakeShop_v2.0.Server\\GaNamCakeShop_v2.0.Server.csproj|solutionrelative:ganamcakeshop_v2.0.server\\settings\\databasesettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6EAA8931-DB7D-4CC5-B9B5-1FC258444445}|GaNamCakeShop_v2.0.Server\\GaNamCakeShop_v2.0.Server.csproj|d:\\computing documents\\web-app development\\g\u00E0 n\u1EA5m cake shop v2.0\\ganamcakeshop_v2.0.server\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6EAA8931-DB7D-4CC5-B9B5-1FC258444445}|GaNamCakeShop_v2.0.Server\\GaNamCakeShop_v2.0.Server.csproj|solutionrelative:ganamcakeshop_v2.0.server\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6EAA8931-DB7D-4CC5-B9B5-1FC258444445}|GaNamCakeShop_v2.0.Server\\GaNamCakeShop_v2.0.Server.csproj|d:\\computing documents\\web-app development\\g\u00E0 n\u1EA5m cake shop v2.0\\ganamcakeshop_v2.0.server\\controllers\\staffscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6EAA8931-DB7D-4CC5-B9B5-1FC258444445}|GaNamCakeShop_v2.0.Server\\GaNamCakeShop_v2.0.Server.csproj|solutionrelative:ganamcakeshop_v2.0.server\\controllers\\staffscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6EAA8931-DB7D-4CC5-B9B5-1FC258444445}|GaNamCakeShop_v2.0.Server\\GaNamCakeShop_v2.0.Server.csproj|d:\\computing documents\\web-app development\\g\u00E0 n\u1EA5m cake shop v2.0\\ganamcakeshop_v2.0.server\\models\\staffs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6EAA8931-DB7D-4CC5-B9B5-1FC258444445}|GaNamCakeShop_v2.0.Server\\GaNamCakeShop_v2.0.Server.csproj|solutionrelative:ganamcakeshop_v2.0.server\\models\\staffs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6EAA8931-DB7D-4CC5-B9B5-1FC258444445}|GaNamCakeShop_v2.0.Server\\GaNamCakeShop_v2.0.Server.csproj|d:\\computing documents\\web-app development\\g\u00E0 n\u1EA5m cake shop v2.0\\ganamcakeshop_v2.0.server\\services\\staffsservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6EAA8931-DB7D-4CC5-B9B5-1FC258444445}|GaNamCakeShop_v2.0.Server\\GaNamCakeShop_v2.0.Server.csproj|solutionrelative:ganamcakeshop_v2.0.server\\services\\staffsservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 7,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "StaffsController.cs",
+              "DocumentMoniker": "D:\\Computing Documents\\Web-app Development\\G\u00E0 N\u1EA5m Cake Shop v2.0\\GaNamCakeShop_v2.0.Server\\Controllers\\StaffsController.cs",
+              "RelativeDocumentMoniker": "GaNamCakeShop_v2.0.Server\\Controllers\\StaffsController.cs",
+              "ToolTip": "D:\\Computing Documents\\Web-app Development\\G\u00E0 N\u1EA5m Cake Shop v2.0\\GaNamCakeShop_v2.0.Server\\Controllers\\StaffsController.cs",
+              "RelativeToolTip": "GaNamCakeShop_v2.0.Server\\Controllers\\StaffsController.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAAAoAAAA2AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-02T15:28:49.357Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Staffs.cs",
+              "DocumentMoniker": "D:\\Computing Documents\\Web-app Development\\G\u00E0 N\u1EA5m Cake Shop v2.0\\GaNamCakeShop_v2.0.Server\\Models\\Staffs.cs",
+              "RelativeDocumentMoniker": "GaNamCakeShop_v2.0.Server\\Models\\Staffs.cs",
+              "ToolTip": "D:\\Computing Documents\\Web-app Development\\G\u00E0 N\u1EA5m Cake Shop v2.0\\GaNamCakeShop_v2.0.Server\\Models\\Staffs.cs",
+              "RelativeToolTip": "GaNamCakeShop_v2.0.Server\\Models\\Staffs.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-02T15:16:18.885Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Computing Documents\\Web-app Development\\G\u00E0 N\u1EA5m Cake Shop v2.0\\GaNamCakeShop_v2.0.Server\\Program.cs",
+              "RelativeDocumentMoniker": "GaNamCakeShop_v2.0.Server\\Program.cs",
+              "ToolTip": "D:\\Computing Documents\\Web-app Development\\G\u00E0 N\u1EA5m Cake Shop v2.0\\GaNamCakeShop_v2.0.Server\\Program.cs",
+              "RelativeToolTip": "GaNamCakeShop_v2.0.Server\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-02T15:12:08.45Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "StaffsServices.cs",
+              "DocumentMoniker": "D:\\Computing Documents\\Web-app Development\\G\u00E0 N\u1EA5m Cake Shop v2.0\\GaNamCakeShop_v2.0.Server\\Services\\StaffsServices.cs",
+              "RelativeDocumentMoniker": "GaNamCakeShop_v2.0.Server\\Services\\StaffsServices.cs",
+              "ToolTip": "D:\\Computing Documents\\Web-app Development\\G\u00E0 N\u1EA5m Cake Shop v2.0\\GaNamCakeShop_v2.0.Server\\Services\\StaffsServices.cs",
+              "RelativeToolTip": "GaNamCakeShop_v2.0.Server\\Services\\StaffsServices.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAZAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-02T15:10:08.423Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\Computing Documents\\Web-app Development\\G\u00E0 N\u1EA5m Cake Shop v2.0\\GaNamCakeShop_v2.0.Server\\appsettings.json",
+              "RelativeDocumentMoniker": "GaNamCakeShop_v2.0.Server\\appsettings.json",
+              "ToolTip": "D:\\Computing Documents\\Web-app Development\\G\u00E0 N\u1EA5m Cake Shop v2.0\\GaNamCakeShop_v2.0.Server\\appsettings.json",
+              "RelativeToolTip": "GaNamCakeShop_v2.0.Server\\appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAVAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-05-02T15:09:36.767Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "DatabaseSettings.cs",
+              "DocumentMoniker": "D:\\Computing Documents\\Web-app Development\\G\u00E0 N\u1EA5m Cake Shop v2.0\\GaNamCakeShop_v2.0.Server\\Settings\\DatabaseSettings.cs",
+              "RelativeDocumentMoniker": "GaNamCakeShop_v2.0.Server\\Settings\\DatabaseSettings.cs",
+              "ToolTip": "D:\\Computing Documents\\Web-app Development\\G\u00E0 N\u1EA5m Cake Shop v2.0\\GaNamCakeShop_v2.0.Server\\Settings\\DatabaseSettings.cs",
+              "RelativeToolTip": "GaNamCakeShop_v2.0.Server\\Settings\\DatabaseSettings.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAhAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-02T15:09:34.59Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ProductsServices.cs",
+              "DocumentMoniker": "D:\\Computing Documents\\Web-app Development\\G\u00E0 N\u1EA5m Cake Shop v2.0\\GaNamCakeShop_v2.0.Server\\Services\\ProductsServices.cs",
+              "RelativeDocumentMoniker": "GaNamCakeShop_v2.0.Server\\Services\\ProductsServices.cs",
+              "ToolTip": "D:\\Computing Documents\\Web-app Development\\G\u00E0 N\u1EA5m Cake Shop v2.0\\GaNamCakeShop_v2.0.Server\\Services\\ProductsServices.cs",
+              "RelativeToolTip": "GaNamCakeShop_v2.0.Server\\Services\\ProductsServices.cs",
+              "ViewState": "AQIAABEAAAAAAAAAAAAUwAsAAAA5AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-02T15:09:06.807Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Products.cs",
+              "DocumentMoniker": "D:\\Computing Documents\\Web-app Development\\G\u00E0 N\u1EA5m Cake Shop v2.0\\GaNamCakeShop_v2.0.Server\\Models\\Products.cs",
+              "RelativeDocumentMoniker": "GaNamCakeShop_v2.0.Server\\Models\\Products.cs",
+              "ToolTip": "D:\\Computing Documents\\Web-app Development\\G\u00E0 N\u1EA5m Cake Shop v2.0\\GaNamCakeShop_v2.0.Server\\Models\\Products.cs",
+              "RelativeToolTip": "GaNamCakeShop_v2.0.Server\\Models\\Products.cs",
+              "ViewState": "AQIAABAAAAAAAAAAAAAjwBoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-02T15:09:00.134Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ProductsController.cs",
+              "DocumentMoniker": "D:\\Computing Documents\\Web-app Development\\G\u00E0 N\u1EA5m Cake Shop v2.0\\GaNamCakeShop_v2.0.Server\\Controllers\\ProductsController.cs",
+              "RelativeDocumentMoniker": "GaNamCakeShop_v2.0.Server\\Controllers\\ProductsController.cs",
+              "ToolTip": "D:\\Computing Documents\\Web-app Development\\G\u00E0 N\u1EA5m Cake Shop v2.0\\GaNamCakeShop_v2.0.Server\\Controllers\\ProductsController.cs",
+              "RelativeToolTip": "GaNamCakeShop_v2.0.Server\\Controllers\\ProductsController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAwAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-02T14:18:01.354Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }

@@ -1,6 +1,15 @@
+using GaNamCakeShop_v2._0.Server.Models;
+using GaNamCakeShop_v2._0.Server.Services;
+using GaNamCakeShop_v2._0.Server.Settings;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection("ConnectionStrings"));
+builder.Services.AddSingleton<StaffsServices>();
+builder.Services.AddSingleton<ProductsServices>();
+builder.Services.AddControllersWithViews();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
