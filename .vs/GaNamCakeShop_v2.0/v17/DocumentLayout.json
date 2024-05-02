@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "D:\\Computing Documents\\Web-app Development\\G\u00E0 N\u1EA5m Cake Shop v2.0\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{6EAA8931-DB7D-4CC5-B9B5-1FC258444445}|GaNamCakeShop_v2.0.Server\\GaNamCakeShop_v2.0.Server.csproj|d:\\computing documents\\web-app development\\g\u00E0 n\u1EA5m cake shop v2.0\\ganamcakeshop_v2.0.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6EAA8931-DB7D-4CC5-B9B5-1FC258444445}|GaNamCakeShop_v2.0.Server\\GaNamCakeShop_v2.0.Server.csproj|solutionrelative:ganamcakeshop_v2.0.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{6EAA8931-DB7D-4CC5-B9B5-1FC258444445}|GaNamCakeShop_v2.0.Server\\GaNamCakeShop_v2.0.Server.csproj|d:\\computing documents\\web-app development\\g\u00E0 n\u1EA5m cake shop v2.0\\ganamcakeshop_v2.0.server\\models\\products.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6EAA8931-DB7D-4CC5-B9B5-1FC258444445}|GaNamCakeShop_v2.0.Server\\GaNamCakeShop_v2.0.Server.csproj|solutionrelative:ganamcakeshop_v2.0.server\\models\\products.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6EAA8931-DB7D-4CC5-B9B5-1FC258444445}|GaNamCakeShop_v2.0.Server\\GaNamCakeShop_v2.0.Server.csproj|d:\\computing documents\\web-app development\\g\u00E0 n\u1EA5m cake shop v2.0\\ganamcakeshop_v2.0.server\\services\\productsservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6EAA8931-DB7D-4CC5-B9B5-1FC258444445}|GaNamCakeShop_v2.0.Server\\GaNamCakeShop_v2.0.Server.csproj|solutionrelative:ganamcakeshop_v2.0.server\\services\\productsservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6EAA8931-DB7D-4CC5-B9B5-1FC258444445}|GaNamCakeShop_v2.0.Server\\GaNamCakeShop_v2.0.Server.csproj|d:\\computing documents\\web-app development\\g\u00E0 n\u1EA5m cake shop v2.0\\ganamcakeshop_v2.0.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6EAA8931-DB7D-4CC5-B9B5-1FC258444445}|GaNamCakeShop_v2.0.Server\\GaNamCakeShop_v2.0.Server.csproj|solutionrelative:ganamcakeshop_v2.0.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6EAA8931-DB7D-4CC5-B9B5-1FC258444445}|GaNamCakeShop_v2.0.Server\\GaNamCakeShop_v2.0.Server.csproj|d:\\computing documents\\web-app development\\g\u00E0 n\u1EA5m cake shop v2.0\\ganamcakeshop_v2.0.server\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
@@ -46,7 +46,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
@@ -58,8 +58,7 @@
               "RelativeToolTip": "GaNamCakeShop_v2.0.Server\\Controllers\\StaffsController.cs",
               "ViewState": "AQIAAAYAAAAAAAAAAAAAAAoAAAA2AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-02T15:28:49.357Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-02T15:28:49.357Z"
             },
             {
               "$type": "Document",
@@ -71,18 +70,17 @@
               "RelativeToolTip": "GaNamCakeShop_v2.0.Server\\Models\\Staffs.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-02T15:16:18.885Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-02T15:16:18.885Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\Computing Documents\\Web-app Development\\G\u00E0 N\u1EA5m Cake Shop v2.0\\GaNamCakeShop_v2.0.Server\\Program.cs",
               "RelativeDocumentMoniker": "GaNamCakeShop_v2.0.Server\\Program.cs",
               "ToolTip": "D:\\Computing Documents\\Web-app Development\\G\u00E0 N\u1EA5m Cake Shop v2.0\\GaNamCakeShop_v2.0.Server\\Program.cs",
               "RelativeToolTip": "GaNamCakeShop_v2.0.Server\\Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAALAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-02T15:12:08.45Z",
               "EditorCaption": ""
@@ -97,8 +95,7 @@
               "RelativeToolTip": "GaNamCakeShop_v2.0.Server\\Services\\StaffsServices.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAZAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-02T15:10:08.423Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-02T15:10:08.423Z"
             },
             {
               "$type": "Document",
@@ -110,8 +107,7 @@
               "RelativeToolTip": "GaNamCakeShop_v2.0.Server\\appsettings.json",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAVAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-05-02T15:09:36.767Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-02T15:09:36.767Z"
             },
             {
               "$type": "Document",
@@ -123,12 +119,11 @@
               "RelativeToolTip": "GaNamCakeShop_v2.0.Server\\Settings\\DatabaseSettings.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAhAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-02T15:09:34.59Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-02T15:09:34.59Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "ProductsServices.cs",
               "DocumentMoniker": "D:\\Computing Documents\\Web-app Development\\G\u00E0 N\u1EA5m Cake Shop v2.0\\GaNamCakeShop_v2.0.Server\\Services\\ProductsServices.cs",
               "RelativeDocumentMoniker": "GaNamCakeShop_v2.0.Server\\Services\\ProductsServices.cs",
@@ -136,18 +131,17 @@
               "RelativeToolTip": "GaNamCakeShop_v2.0.Server\\Services\\ProductsServices.cs",
               "ViewState": "AQIAABEAAAAAAAAAAAAUwAsAAAA5AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-02T15:09:06.807Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-02T15:09:06.807Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Products.cs",
               "DocumentMoniker": "D:\\Computing Documents\\Web-app Development\\G\u00E0 N\u1EA5m Cake Shop v2.0\\GaNamCakeShop_v2.0.Server\\Models\\Products.cs",
               "RelativeDocumentMoniker": "GaNamCakeShop_v2.0.Server\\Models\\Products.cs",
               "ToolTip": "D:\\Computing Documents\\Web-app Development\\G\u00E0 N\u1EA5m Cake Shop v2.0\\GaNamCakeShop_v2.0.Server\\Models\\Products.cs",
               "RelativeToolTip": "GaNamCakeShop_v2.0.Server\\Models\\Products.cs",
-              "ViewState": "AQIAABAAAAAAAAAAAAAjwBoAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABoAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-02T15:09:00.134Z",
               "EditorCaption": ""
@@ -162,8 +156,7 @@
               "RelativeToolTip": "GaNamCakeShop_v2.0.Server\\Controllers\\ProductsController.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAwAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-02T14:18:01.354Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-02T14:18:01.354Z"
             }
           ]
         }
