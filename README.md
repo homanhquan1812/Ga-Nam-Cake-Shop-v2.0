@@ -36,6 +36,7 @@ This website is designed to facilitate convenient online ordering from our cake 
    - <b>Manager</b>: tranvanan321 - An#321@1985
 
 # Known bugs
+1. When there's no order in Staffs' pages, the number by <b>New Orders</b> still shows 0 even though it's been set to <b>display: none</b>.
 
 # Features that need to be added
 
