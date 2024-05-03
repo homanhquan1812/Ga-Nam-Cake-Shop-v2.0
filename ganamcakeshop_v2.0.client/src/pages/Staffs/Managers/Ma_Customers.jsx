@@ -1,7 +1,68 @@
-import React from 'react'
+import { React, useState, useEffect } from 'react';
 import Ma_CustomersHead from '../../../components/Staffs/Managers/Ma_CustomersHead'
 
 const Ma_Customers = () => {
+    const [customers, setCustomers] = useState([]);
+    const [orders, setOrders] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const response = await fetch('https://localhost:5173/api/customers');
+            // const response = await fetch('https://yolohome-homanhquan-api.onrender.com/dashboard');
+            if (!response.ok) {
+              throw new Error('Failed to fetch data');
+            }
+            const data = await response.json();
+            setCustomers(data);
+          } catch (error) {
+            console.error('Error fetching data:', error);
+          }
+        };
+    
+        // Fetch data initially
+        fetchData();
+
+        const fetchData2 = async () => {
+            try {
+              const response = await fetch('https://localhost:5173/api/orders');
+              // const response = await fetch('https://yolohome-homanhquan-api.onrender.com/dashboard');
+              if (!response.ok) {
+                throw new Error('Failed to fetch data');
+              }
+              const data = await response.json();
+              setOrders(data);
+            } catch (error) {
+              console.error('Error fetching data:', error);
+            }
+          };
+      
+          // Fetch data initially
+          fetchData2();
+
+          // Fetch data every 5 seconds
+        const intervalId = setInterval(fetchData2, 5000);
+
+        // Cleanup function
+        return () => clearInterval(intervalId);
+      }, []);
+
+      const countRow = (orders) => {
+        if (!Array.isArray(orders)) {
+          return 0; // Return 0 if orders is not an array
+        }
+    
+        let totalRow = 0;
+    
+        orders.forEach(order => {
+          if (order && !order.declined && !order.delivered) {
+            totalRow += 1; // Increment totalRow if order is not declined and not delivered
+          }
+        });
+    
+        return totalRow;
+      };
+
   return (
     <div>
     <Ma_CustomersHead />
@@ -59,15 +120,15 @@ const Ma_Customers = () => {
             <a href="/managers/orders">
             <span className="material-symbols-outlined"> list_alt </span>
             <h3>New Orders</h3>
-            {'{'}{'{'}#if (eq (countRow orders) 0){'}'}{'}'}
-            <span className="message-count" style={{display: 'none'}}>
-                {'{'}{'{'}countRow orders{'}'}{'}'}
-            </span>
-            {'{'}{'{'}else{'}'}{'}'}
-            <span className="message-count">
-                {'{'}{'{'}countRow orders{'}'}{'}'}
-            </span>
-            {'{'}{'{'}/if{'}'}{'}'} 
+            {orders.length === 0 ? (
+                <span className="message-count" style={{ display: 'none' }}>
+                    {countRow(orders)}
+                </span>
+                ) : (
+                <span className="message-count">
+                    {countRow(orders)}
+                </span>
+            )} 
             </a>
             <a href="/managers/staffs">
             <span className="material-symbols-outlined">groups</span>
@@ -114,8 +175,6 @@ const Ma_Customers = () => {
                             </div>
                         </div>
                         */}
-                {'{'}{'{'}#each csw_info2{'}'}{'}'}
-                {'{'}{'{'}/each{'}'}{'}'}
                 <table style={{marginTop: '20px'}}>
                 <thead>
                     <tr>
@@ -129,20 +188,24 @@ const Ma_Customers = () => {
                     <th>Action</th>
                     </tr>
                 </thead>
-                <tbody><tr>
-                    <td>{'{'}{'{'}sum @index 1{'}'}{'}'}</td>
-                    <td>{'{'}{'{'}this.csw_name{'}'}{'}'}</td>
-                    <td>{'{'}{'{'}this.csw_gender{'}'}{'}'}</td>
-                    <td>{'{'}{'{'}this.csw_phonenumber{'}'}{'}'}</td>
-                    <td>{'{'}{'{'}this.csw_address{'}'}{'}'}</td>
-                    <td>{'{'}{'{'}this.csw_username{'}'}{'}'}</td>
-                    <td>{'{'}{'{'}this.csw_emailaddress{'}'}{'}'}</td>
-                    <td>
-                        {'{'}{'{'}#unless (eq this.csw_position "Manager"){'}'}{'}'}
-                        <button type="button" className="btn btn-danger" data-toggle="modal" data-id="{{this._id}}" data-target="#delete-course-modal">Remove</button>
-                        {'{'}{'{'}/unless{'}'}{'}'}
-                    </td>
-                    </tr><tr />
+                <tbody>
+                    {(() => {
+                        let counter = 0;
+                        return customers && customers.map((customer) => (
+                            !customer.deleted && (
+                                <tr key={customer.id}>
+                                <td>{++counter}</td>
+                                <td>{customer.csw_name}</td>
+                                <td>{customer.csw_gender}</td>
+                                <td>{customer.csw_phonenumber}</td>
+                                <td>{customer.csw_address}</td>
+                                <td>{customer.csw_username}</td>
+                                <td>{customer.csw_emailaddress}</td>
+                                <td><button type="button" class="btn btn-danger"  data-toggle="modal" data-id={customer.id} data-target="#delete-course-modal">Remove</button></td>
+                            </tr>
+                            )
+                        ))
+                    })()}
                 </tbody>
                 </table>
                 {/*

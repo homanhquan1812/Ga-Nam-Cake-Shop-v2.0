@@ -1,7 +1,64 @@
-import React from 'react'
+import { React, useState, useEffect } from 'react';
 import Em_DashboardsHead from '../../../components/Staffs/Employees/Em_DashboardsHead'
 
 const Em_Dashboard = () => {
+    const [orders, setOrders] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const response = await fetch('https://localhost:5173/api/orders');
+            // const response = await fetch('https://yolohome-homanhquan-api.onrender.com/dashboard');
+            if (!response.ok) {
+              throw new Error('Failed to fetch data');
+            }
+            const data = await response.json();
+            setOrders(data);
+          } catch (error) {
+            console.error('Error fetching data:', error);
+          }
+        };
+    
+        // Fetch data initially
+        fetchData();
+
+        // Fetch data every 5 seconds
+        const intervalId = setInterval(fetchData, 5000);
+
+        // Cleanup function
+        return () => clearInterval(intervalId);
+      }, []);
+
+      const countRow = (orders) => {
+        if (!Array.isArray(orders)) {
+          return 0; // Return 0 if orders is not an array
+        }
+    
+        let totalRow = 0;
+    
+        orders.forEach(order => {
+          if (order && !order.declined && !order.delivered) {
+            totalRow += 1; // Increment totalRow if order is not declined and not delivered
+          }
+        });
+    
+        return totalRow;
+      };
+
+      const getTotal = (orders) => {
+        if (!Array.isArray(orders)) {
+          return 0;
+        }
+  
+        let totalSum = 0;
+        orders.forEach(order => {
+          if (order && !order.declined && order.delivered) {
+            totalSum += order.totalcost || 0;
+          }
+        });
+        return totalSum;
+      };
+
   return (    
     <div>
     <Em_DashboardsHead />
@@ -59,15 +116,15 @@ const Em_Dashboard = () => {
             <a href="/employees/orders">
             <span className="material-symbols-outlined"> list_alt </span>
             <h3>New Orders</h3>
-            {'{'}{'{'}#if (eq (countRow orders) 0){'}'}{'}'}
-            <span className="message-count" style={{display: 'none'}}>
-                {'{'}{'{'}countRow orders{'}'}{'}'}
-            </span>
-            {'{'}{'{'}else{'}'}{'}'}
-            <span className="message-count">
-                {'{'}{'{'}countRow orders{'}'}{'}'}
-            </span>
-            {'{'}{'{'}/if{'}'}{'}'} 
+            {orders.length === 0 ? (
+                <span className="message-count" style={{ display: 'none' }}>
+                    {countRow(orders)}
+                </span>
+                ) : (
+                <span className="message-count">
+                    {countRow(orders)}
+                </span>
+            )}  
             </a>
             <a href="/employees/notes">
             <span className="material-symbols-outlined"> format_list_bulleted_add </span>
@@ -103,11 +160,11 @@ const Em_Dashboard = () => {
                 <div className="middle">
                 <div className="left">
                     <h3>Total Sales</h3>
-                    <h1>{'{'}{'{'}getTotal orders{'}'}{'}'} VND</h1>
+                    <h1>              
+                    {getTotal(orders)} VND
+                    </h1>
                 </div>
                 </div>
-                {'{'}{'{'}#each orders{'}'}{'}'}
-                {'{'}{'{'}/each{'}'}{'}'}
                 <table style={{marginTop: '20px'}}>
                 <thead>
                     <tr>
@@ -122,37 +179,64 @@ const Em_Dashboard = () => {
                     <th>Status</th>
                     </tr>
                 </thead>
-                <tbody><tr>
-                    <td>{'{'}{'{'}sum @index 1{'}'}{'}'}</td>
-                    <td>{'{'}{'{'}this.customer{'}'}{'}'}</td>
-                    <td>{'{'}{'{'}this.phonenumber{'}'}{'}'}</td>
-                    <td>{'{'}{'{'}this.address{'}'}{'}'}</td>
-                    <td>
-                        {'{'}{'{'}#each this.products{'}'}{'}'}
-                        {'{'}{'{'}this.name{'}'}{'}'}
-                        {'{'}{'{'}#unless @last{'}'}{'}'}<br /><hr /> {'{'}{'{'}/unless{'}'}{'}'}
-                        {'{'}{'{'}/each{'}'}{'}'}
-                    </td>
-                    <td>
-                        {'{'}{'{'}#each this.products{'}'}{'}'}
-                        {'{'}{'{'}this.qty{'}'}{'}'}
-                        {'{'}{'{'}#unless @last{'}'}{'}'}<br /><hr /> {'{'}{'{'}/unless{'}'}{'}'}
-                        {'{'}{'{'}/each{'}'}{'}'}
-                    </td>
-                    <td>{'{'}{'{'}this.createdAt{'}'}{'}'}</td>
-                    <td>{'{'}{'{'}this.totalcost{'}'}{'}'}</td>
-                    <td>
-                        {'{'}{'{'}#if (isBool this.declined true){'}'}{'}'}
-                        <button type="button" className="btn btn-danger">Declined</button>
-                        {'{'}{'{'}else{'}'}{'}'}
-                        {'{'}{'{'}#if (isBool this.delivered true){'}'}{'}'}
-                        <button type="button" className="btn btn-success">Delivered</button>
-                        {'{'}{'{'}else{'}'}{'}'}
-                        <button type="button" className="btn btn-warning">Processing</button>
-                        {'{'}{'{'}/if{'}'}{'}'}
-                        {'{'}{'{'}/if{'}'}{'}'}
-                    </td>
-                    </tr><tr />
+                <tbody>
+                {/* Order number is reversed */}
+                {(() => {
+                    let counter = 0;
+                    return (
+                        orders &&
+                        orders
+                        .slice()
+                        .reverse()
+                        .map((order) =>
+                            !order.deleted && (
+                            <tr key={order.id}>
+                                <td>{++counter}</td>
+                                <td>{order.customer}</td>
+                                <td>{order.phonenumber}</td>
+                                <td>{order.address}</td>
+                                <td>
+                                {order.products
+                                    .map((product, index) => (
+                                    <div key={index}>
+                                        {index !== 0 && <hr />}
+                                        {product.name}                      
+                                    </div>
+                                    ))}
+                                </td>
+                                <td>
+                                {order.products
+                                    .map((product, index) => (
+                                    <div key={index}>
+                                        {index !== 0 && <hr />}
+                                        {product.qty}
+                                    </div>
+                                    ))}
+                                </td>
+                                <td>{order.createdAt}</td>
+                                <td>{order.totalcost}</td>
+                                <td>
+                                {order.declined && (
+                                    <button type="button" className="btn btn-danger">
+                                    Declined
+                                    </button>
+                                )}
+                                {!order.declined && order.delivered && (
+                                    <button type="button" className="btn btn-success">
+                                    Delivered
+                                    </button>
+                                )}
+                                {!order.declined && !order.delivered && (
+                                    <button type="button" className="btn btn-warning">
+                                    Processing
+                                    </button>
+                                )}
+                                </td>
+                            </tr>
+                            )
+                        )
+                    );
+                    })()}
                 </tbody>
                 </table>
                 {/*

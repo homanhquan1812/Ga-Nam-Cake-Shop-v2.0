@@ -1,7 +1,50 @@
-import React from 'react'
+import { React, useState, useEffect } from 'react';
 import Em_OrdersHead from '../../../components/Staffs/Employees/Em_OrdersHead'
 
 const Em_Orders = () => {
+    const [orders, setOrders] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const response = await fetch('https://localhost:5173/api/orders');
+            // const response = await fetch('https://yolohome-homanhquan-api.onrender.com/dashboard');
+            if (!response.ok) {
+              throw new Error('Failed to fetch data');
+            }
+            const data = await response.json();
+            setOrders(data);
+          } catch (error) {
+            console.error('Error fetching data:', error);
+          }
+        };
+    
+        // Fetch data initially
+        fetchData();
+
+        // Fetch data every 5 seconds
+        const intervalId = setInterval(fetchData, 5000);
+
+        // Cleanup function
+        return () => clearInterval(intervalId);
+      }, []);
+
+      const countRow = (orders) => {
+        if (!Array.isArray(orders)) {
+          return 0; // Return 0 if orders is not an array
+        }
+    
+        let totalRow = 0;
+    
+        orders.forEach(order => {
+          if (order && !order.declined && !order.delivered) {
+            totalRow += 1; // Increment totalRow if order is not declined and not delivered
+          }
+        });
+    
+        return totalRow;
+      };
+
   return (
     <div>
     <Em_OrdersHead />
@@ -59,15 +102,15 @@ const Em_Orders = () => {
             <a href="/employees/orders" className="active">
             <span className="material-symbols-outlined"> list_alt </span>
             <h3>New Orders</h3>
-            {'{'}{'{'}#if (eq (countRow orders) 0){'}'}{'}'}
-            <span className="message-count" style={{display: 'none'}}>
-                {'{'}{'{'}countRow orders{'}'}{'}'}
-            </span>
-            {'{'}{'{'}else{'}'}{'}'}
-            <span className="message-count">
-                {'{'}{'{'}countRow orders{'}'}{'}'}
-            </span>
-            {'{'}{'{'}/if{'}'}{'}'} 
+            {orders.length === 0 ? (
+                <span className="message-count" style={{display: 'none'}}>
+                    {countRow(orders)}
+                </span>
+                ) : (
+                <span className="message-count">
+                    {countRow(orders)}
+                </span>
+            )}  
             </a>
             <a href="/employees/notes">
             <span className="material-symbols-outlined"> format_list_bulleted_add </span>
@@ -106,13 +149,10 @@ const Em_Orders = () => {
                             </div>
                         </div>
                         */}
-                {'{'}{'{'}#each orders{'}'}{'}'}
-                {'{'}{'{'}#unless this.delivered{'}'}{'}'}
-                {'{'}{'{'}/unless{'}'}{'}'}
-                {'{'}{'{'}/each{'}'}{'}'}
                 <table style={{marginTop: '20px'}}>
                 <thead>
                     <tr>
+                    <th>No</th>
                     <th>Customer</th>
                     <th>Phone number</th>
                     <th>Address</th>
@@ -122,25 +162,39 @@ const Em_Orders = () => {
                     <th>Action</th>
                     </tr>
                 </thead>
-                <tbody><tr><td>{'{'}{'{'}this.customer{'}'}{'}'}</td>
-                    <td>{'{'}{'{'}this.phonenumber{'}'}{'}'}</td>
-                    <td>{'{'}{'{'}this.address{'}'}{'}'}</td>
-                    <td>
-                        {'{'}{'{'}#each this.products{'}'}{'}'}
-                        {'{'}{'{'}this.name{'}'}{'}'}
-                        {'{'}{'{'}#unless @last{'}'}{'}'}<br /><hr /> {'{'}{'{'}/unless{'}'}{'}'}
-                        {'{'}{'{'}/each{'}'}{'}'}
-                    </td>
-                    <td>
-                        {'{'}{'{'}#each this.products{'}'}{'}'}
-                        {'{'}{'{'}this.qty{'}'}{'}'}
-                        {'{'}{'{'}#unless @last{'}'}{'}'}<br /><hr /> {'{'}{'{'}/unless{'}'}{'}'}
-                        {'{'}{'{'}/each{'}'}{'}'}
-                    </td>
-                    <td>{'{'}{'{'}this.totalcost{'}'}{'}'} VND</td>
-                    <td>
-                        <button type="button" className="btn btn-primary" data-toggle="modal" data-id="{{this._id}}" data-target="#delete-course-modal">Finish delivering</button>
-                    </td></tr><tr />
+                <tbody>
+                    {(() => {
+                        let counter = 0;
+                        return orders && orders.slice()
+                        .reverse().map((order) => (
+                            !order.deleted && !order.declined && !order.delivered && (
+                                <tr key={order.id}>
+                                <td>{++counter}</td>
+                                <td>{order.customer}</td>
+                                <td>{order.phonenumber}</td>
+                                <td>{order.address}</td>
+                                <td>
+                                    {order.products.map((product, index) => (
+                                        <div key={index}>
+                                            {product.name}
+                                            {index !== order.products.length - 1 && <hr />}
+                                        </div>
+                                    ))}
+                                </td>
+                                <td>
+                                    {order.products.map((product, index) => (
+                                        <div key={index}>
+                                            {product.qty}
+                                            {index !== order.products.length - 1 && <hr />}
+                                        </div>
+                                    ))}
+                                </td>
+                                <td>{order.totalcost}</td>
+                                <td><button type="button" class="btn btn-primary" data-toggle="modal" data-id={order.id} data-target="#delete-course-modal">Finish delivering</button></td>
+                            </tr>
+                            )
+                        ))
+                    })()}
                 </tbody>
                 </table>
                 {/*

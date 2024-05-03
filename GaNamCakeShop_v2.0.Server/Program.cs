@@ -7,10 +7,19 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection("ConnectionStrings"));
+
 // Staffs
 builder.Services.AddSingleton<StaffsServices>();
 // Products
 builder.Services.AddSingleton<ProductsServices>();
+// Feedbacks
+builder.Services.AddSingleton<FeedbacksServices>();
+// Notes
+builder.Services.AddSingleton<NotesServices>();
+// Orders
+builder.Services.AddSingleton<OrdersServices>();
+// Customers
+builder.Services.AddSingleton<CustomersServices>();
 
 builder.Services.AddControllersWithViews();
 

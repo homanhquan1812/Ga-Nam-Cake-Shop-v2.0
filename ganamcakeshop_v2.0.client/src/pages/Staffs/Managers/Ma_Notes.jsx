@@ -1,7 +1,69 @@
-import React from 'react'
+import { React, useState, useEffect } from 'react';
 import Ma_NotesHead from '../../../components/Staffs/Managers/Ma_NotesHead'
+import GeneralScript from '../../../components/GeneralScript';
 
 const Ma_Notes = () => {
+    const [notes, setNotes] = useState([]);
+    const [orders, setOrders] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const response = await fetch('https://localhost:5173/api/notes');
+            // const response = await fetch('https://yolohome-homanhquan-api.onrender.com/dashboard');
+            if (!response.ok) {
+              throw new Error('Failed to fetch data');
+            }
+            const data = await response.json();
+            setNotes(data);
+          } catch (error) {
+            console.error('Error fetching data:', error);
+          }
+        };
+    
+        // Fetch data initially
+        fetchData();
+
+        const fetchData2 = async () => {
+            try {
+              const response = await fetch('https://localhost:5173/api/orders');
+              // const response = await fetch('https://yolohome-homanhquan-api.onrender.com/dashboard');
+              if (!response.ok) {
+                throw new Error('Failed to fetch data');
+              }
+              const data = await response.json();
+              setOrders(data);
+            } catch (error) {
+              console.error('Error fetching data:', error);
+            }
+          };
+      
+          // Fetch data initially
+          fetchData2();
+
+          // Fetch data every 5 seconds
+        const intervalId = setInterval(fetchData2, 5000);
+
+        // Cleanup function
+        return () => clearInterval(intervalId);
+      }, []);
+
+      const countRow = (orders) => {
+        if (!Array.isArray(orders)) {
+          return 0; // Return 0 if orders is not an array
+        }
+    
+        let totalRow = 0;
+    
+        orders.forEach(order => {
+          if (order && !order.declined && !order.delivered) {
+            totalRow += 1; // Increment totalRow if order is not declined and not delivered
+          }
+        });
+    
+        return totalRow;
+      };
+
   return (
     <div>
     <Ma_NotesHead />
@@ -59,15 +121,15 @@ const Ma_Notes = () => {
             <a href="/managers/orders">
             <span className="material-symbols-outlined"> list_alt </span>
             <h3>New Orders</h3>
-            {'{'}{'{'}#if (eq (countRow orders) 0){'}'}{'}'}
-            <span className="message-count" style={{display: 'none'}}>
-                {'{'}{'{'}countRow orders{'}'}{'}'}
-            </span>
-            {'{'}{'{'}else{'}'}{'}'}
-            <span className="message-count">
-                {'{'}{'{'}countRow orders{'}'}{'}'}
-            </span>
-            {'{'}{'{'}/if{'}'}{'}'} 
+            {orders.length === 0 ? (
+                <span className="message-count" style={{ display: 'none' }}>
+                    {countRow(orders)}
+                </span>
+                ) : (
+                <span className="message-count">
+                    {countRow(orders)}
+                </span>
+            )} 
             </a>
             <a href="/managers/staffs">
             <span className="material-symbols-outlined">groups</span>
@@ -123,8 +185,6 @@ const Ma_Notes = () => {
                     <input type="type" id="csw_notes" name="csw_notes" placeholder="Write a note here." required />
                 </form>
                 </div>
-                {'{'}{'{'}#each notes{'}'}{'}'}
-                {'{'}{'{'}/each{'}'}{'}'}
                 <table style={{marginTop: '20px'}}>
                 <thead>
                     <tr>
@@ -133,12 +193,20 @@ const Ma_Notes = () => {
                     <th style={{width: '10%'}}>Action</th>
                     </tr>
                 </thead>
-                <tbody><tr>
-                    <td>{'{'}{'{'}sum @index 1{'}'}{'}'}</td>
-                    <td>{'{'}{'{'}this.csw_notes{'}'}{'}'}</td>
-                    <td><button type="button" className="btn btn-danger" data-toggle="modal" data-id="{{this._id}}" data-target="#delete-course-modal">Remove</button></td>
-                    </tr>
-                    <tr /></tbody>
+                <tbody>
+                    {(() => {
+                        let counter = 0;
+                        return notes && notes.map((note) => (
+                            !note.deleted && (
+                                <tr key={note.id}>
+                                <td>{++counter}</td>
+                                <td>{note.csw_notes}</td>
+                                <td><button type="button" class="btn btn-danger"  data-toggle="modal" data-id={note.id} data-target="#delete-course-modal">Remove</button></td>
+                            </tr>
+                            )
+                        ))
+                    })()}
+                </tbody>
                 </table>
                 {/*
                     <div class="showall">
@@ -176,6 +244,7 @@ const Ma_Notes = () => {
         <div className="top">
         </div>
     </div>
+    <GeneralScript />
     </div>
   )
 }

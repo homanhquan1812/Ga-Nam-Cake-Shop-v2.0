@@ -1,7 +1,68 @@
-import React from 'react'
+import { React, useState, useEffect } from 'react';
 import Ma_FeedbacksHead from '../../../components/Staffs/Managers/Ma_FeedbacksHead'
 
 const Ma_Feedbacks = () => {
+    const [feedbacks, setFeedbacks] = useState([]);
+    const [orders, setOrders] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const response = await fetch('https://localhost:5173/api/feedbacks');
+            // const response = await fetch('https://yolohome-homanhquan-api.onrender.com/dashboard');
+            if (!response.ok) {
+              throw new Error('Failed to fetch data');
+            }
+            const data = await response.json();
+            setFeedbacks(data);
+          } catch (error) {
+            console.error('Error fetching data:', error);
+          }
+        };
+    
+        // Fetch data initially
+        fetchData();
+
+        const fetchData2 = async () => {
+            try {
+              const response = await fetch('https://localhost:5173/api/orders');
+              // const response = await fetch('https://yolohome-homanhquan-api.onrender.com/dashboard');
+              if (!response.ok) {
+                throw new Error('Failed to fetch data');
+              }
+              const data = await response.json();
+              setOrders(data);
+            } catch (error) {
+              console.error('Error fetching data:', error);
+            }
+          };
+      
+          // Fetch data initially
+          fetchData2();
+
+          // Fetch data every 5 seconds
+        const intervalId = setInterval(fetchData2, 5000);
+
+        // Cleanup function
+        return () => clearInterval(intervalId);
+      }, []);
+
+      const countRow = (orders) => {
+        if (!Array.isArray(orders)) {
+          return 0; // Return 0 if orders is not an array
+        }
+    
+        let totalRow = 0;
+    
+        orders.forEach(order => {
+          if (order && !order.declined && !order.delivered) {
+            totalRow += 1; // Increment totalRow if order is not declined and not delivered
+          }
+        });
+    
+        return totalRow;
+      };
+
   return (
     <div>
     <Ma_FeedbacksHead />
@@ -59,15 +120,15 @@ const Ma_Feedbacks = () => {
             <a href="/managers/orders">
             <span className="material-symbols-outlined"> list_alt </span>
             <h3>New Orders</h3>
-            {'{'}{'{'}#if (eq (countRow orders) 0){'}'}{'}'}
-            <span className="message-count" style={{display: 'none'}}>
-                {'{'}{'{'}countRow orders{'}'}{'}'}
-            </span>
-            {'{'}{'{'}else{'}'}{'}'}
-            <span className="message-count">
-                {'{'}{'{'}countRow orders{'}'}{'}'}
-            </span>
-            {'{'}{'{'}/if{'}'}{'}'}    
+            {orders.length === 0 ? (
+                <span className="message-count" style={{ display: 'none' }}>
+                    {countRow(orders)}
+                </span>
+                ) : (
+                <span className="message-count">
+                    {countRow(orders)}
+                </span>
+            )} 
             </a>
             <a href="/managers/staffs">
             <span className="material-symbols-outlined">groups</span>
@@ -114,8 +175,6 @@ const Ma_Feedbacks = () => {
                             </div>
                         </div>
                         */}
-                {'{'}{'{'}#each feedbacks{'}'}{'}'}
-                {'{'}{'{'}/each{'}'}{'}'}
                 <table style={{marginTop: '20px', width: '100%'}}>
                 <thead>
                     <tr>
@@ -126,13 +185,21 @@ const Ma_Feedbacks = () => {
                     <th style={{width: '40%'}}>Message</th>
                     </tr>
                 </thead>
-                <tbody><tr>
-                    <td style={{width: '5%'}}>{'{'}{'{'}sum @index 1{'}'}{'}'}</td>
-                    <td style={{width: '15%'}}>{'{'}{'{'}this.lastName{'}'}{'}'} {'{'}{'{'}this.firstName{'}'}{'}'}</td>
-                    <td style={{width: '15%'}}>{'{'}{'{'}this.phone{'}'}{'}'}</td>
-                    <td style={{width: '25%'}}>{'{'}{'{'}this.email{'}'}{'}'}</td>
-                    <td style={{width: '40%'}}>{'{'}{'{'}this.message{'}'}{'}'}</td>
-                    </tr><tr />
+                <tbody>
+                    {(() => {
+                        let counter = 0;
+                        return feedbacks && feedbacks.map((feedback) => (
+                            !feedback.deleted && (
+                                <tr key={feedback.id}>
+                                <td style={{width: '5%'}}>{++counter}</td>
+                                <td style={{width: '15%'}}>{feedback.lastName} {feedback.firstName}</td>
+                                <td style={{width: '15%'}}>{feedback.phone}</td>
+                                <td style={{width: '25%'}}>{feedback.email}</td>
+                                <td style={{width: '40%'}}>{feedback.message}</td>
+                            </tr>
+                            )
+                        ))
+                    })()}
                 </tbody>
                 </table>
                 {/*
