@@ -18,6 +18,9 @@ This website is designed to facilitate convenient online ordering from our cake 
 
 # Version information
 - Revamped by <b>Hồ Mạnh Quân</b>.
+- Removed both <b>Remember me</b> and <b>Forgot password</b>.
+- Added Real-time data.
+- Added bug fixes and performance improvements.
 - Old version: [Click here](https://github.com/homanhquan1812/Ga-Nam-Cake-Shop).
 
 # Development status
@@ -36,6 +39,7 @@ This website is designed to facilitate convenient online ordering from our cake 
    - <b>Manager</b>: tranvanan321 - An#321@1985
 
 # Known bugs
+1. When there's no order in Staffs' pages, the number by <b>New Orders</b> still shows 0 even though it's been set to <b>display: none</b>.
 
 # Features that need to be added
 
