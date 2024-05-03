@@ -1,4 +1,4 @@
-import React from 'react';
+import { React, useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import About from './pages/About';
 import Contact from './pages/Contact';
@@ -43,7 +43,7 @@ const App = () => {
         <Route path="/history" element={<History />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/details" element={<Details />} />
+        <Route path="/details/:id" element={<Details />} />
         <Route path="/success" element={<Success />} />
 
         {/* Employees */}

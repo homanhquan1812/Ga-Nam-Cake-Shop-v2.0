@@ -63,6 +63,25 @@ const Em_Products = () => {
         return totalRow;
       };
 
+      function myFunction() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("product-searchbar");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+            if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+            }       
+        }
+    }
+
   return (
     <div>
     <Em_ProductsHead />
@@ -162,7 +181,7 @@ const Em_Products = () => {
             <div className="sales">
                 <div className="middle">
                 </div>
-                <input type="text" id="product-searchbar" onkeyup="myFunction()" placeholder="Search for product." />
+                <input type="text" id="product-searchbar" onKeyUp={myFunction} placeholder="Search for products." />
                 <table style={{marginTop: '20px'}} id="myTable">
                 <thead>
                     <tr>

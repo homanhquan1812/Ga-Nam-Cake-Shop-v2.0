@@ -3,7 +3,54 @@ import $ from 'jquery'; // Make sure you have jQuery installed
 
 const GeneralScript = () => {
   useEffect(() => {
-            $("#discardInfoBtn, #saveInfoBtn").hide();
+    const loadScript = (url, options = {}) => {
+      return new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = url;
+        script.async = options.async !== undefined ? options.async : true;
+        script.defer = options.defer !== undefined ? options.defer : false;
+        script.onload = resolve;
+        script.onerror = reject;
+        document.body.appendChild(script);
+      });
+    };
+
+    const scriptUrls = [
+      // Critical scripts
+      'https://code.jquery.com/jquery-3.7.0.min.js',
+      'https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js',
+      
+      // Non-critical scripts
+      '/js/jquery.countup.min.js',
+      '/js/lightbox.min.js',
+      '/js/isotope.pkgd.min.js',
+      '/js/owl.carousel.min.js',
+      '/js/util.js',
+      '/js/main-backtotop.js',
+      '/js/main.js',
+      '/js/script.js',
+      'https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.js',
+      'https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js',
+      'https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js',
+
+      // Additional scripts
+      'https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js',
+      'https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js'
+    ];
+
+    const loadScripts = async () => {
+      for (const url of scriptUrls) {
+        try {
+          await loadScript(url, { async: !url.startsWith('http') }); // Scripts from CDNs are async
+        } catch (error) {
+          console.error(`Failed to load script: ${url}`, error);
+        }
+      }
+    };
+
+    loadScripts();
+
+    $("#discardInfoBtn, #saveInfoBtn").hide();
             $("#discardAddedInfoBtn, #saveAddedInfoBtn").hide();
             $(".add-data").hide();
             $(".currentPosition").show();
@@ -84,49 +131,7 @@ const GeneralScript = () => {
                     $('#saveInfoBtn, #discardInfoBtn').hide();
                     $("#addInfoBtn, #changeInfoBtn").show();
                 })
-            });
-
-            function myFunction() {
-                var input, filter, table, tr, td, i, txtValue;
-                input = document.getElementById("product-searchbar");
-                filter = input.value.toUpperCase();
-                table = document.getElementById("myTable");
-                tr = table.getElementsByTagName("tr");
-                for (i = 0; i < tr.length; i++) {
-                    td = tr[i].getElementsByTagName("td")[1];
-                    if (td) {
-                    txtValue = td.textContent || td.innerText;
-                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                        tr[i].style.display = "";
-                    } else {
-                        tr[i].style.display = "none";
-                    }
-                    }       
-                }
-            }
-
-            function filterProducts() {
-                var input, filter, items, type, i, txtValue;
-                input = document.getElementById("product-searchbar123");
-                filter = input.value.toUpperCase();
-                items = document.getElementsByClassName("showcase__item");
-
-                for (i = 0; i < items.length; i++) {
-                    type = items[i].getAttribute("data-category").toUpperCase();
-                    txtValue = items[i].innerText || items[i].textContent;
-
-                    if (type.indexOf(filter) > -1 || txtValue.toUpperCase().indexOf(filter) > -1) {
-                        items[i].removeAttribute("style");
-                    } else {
-                        items[i].style.display = "none";
-                    }
-                }
-            }
-
-            document.querySelectorAll(".demo").forEach(function(element) {
-                var x = Math.floor(Math.random() * 100) + 1;
-                element.innerHTML = x;
-            });
+            });         
 
             document.querySelectorAll(".addToCartForm").forEach(function(form) {
                 form.addEventListener("submit", function(event) {
@@ -134,6 +139,8 @@ const GeneralScript = () => {
                 });
             });
   }, []);
-}
+
+  return null;
+};
 
 export default GeneralScript;

@@ -1,5 +1,5 @@
 import React from 'react'
-import ContactsScript from '../components/ContactsScript'
+import GeneralScript from '../components/GeneralScript'
 import ContactsHead from '../components/ContactsHead'
 
 const Contact = () => {
@@ -239,7 +239,7 @@ const Contact = () => {
             <p> Copyright © 2023 <span>Gà Nấm Cake Shop</span>. All rights reserved.</p>
             </div>
         </footer>
-        <ContactsScript />
+        <GeneralScript />
     </div>
   )
 }

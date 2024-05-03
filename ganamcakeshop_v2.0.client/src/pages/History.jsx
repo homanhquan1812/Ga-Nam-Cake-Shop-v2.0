@@ -1,6 +1,6 @@
 import React from 'react'
 import HistorysHead from '../components/HistorysHead'
-import HistorysScript from '../components/HistorysScript'
+import GeneralScript from '../components/GeneralScript'
 
 const History = () => {
   return (
@@ -26,7 +26,7 @@ const History = () => {
                 </li>
                 */}
                 <li className="nav-item">
-                <a className="nav-link" href="gallery">MENU</a>
+                <a className="nav-link" href="menu">MENU</a>
                 </li>
                 <li className="nav-item">
                 <a className="nav-link" href="contact">CONTACT</a>
@@ -180,7 +180,7 @@ const History = () => {
         {/* CountUP JS  */} 
         {/* Back to top JS  */}
     </div>
-    <HistorysScript />
+    <GeneralScript />
     </div>
   )
 }

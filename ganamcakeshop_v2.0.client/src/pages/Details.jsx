@@ -1,8 +1,49 @@
-import React from 'react'
+import { React, useState, useEffect } from 'react';
 import ProductDetailsHead from '../components/DetailsHead'
-import ProductDetailsScript from '../components/DetailsScript'
+import GeneralScript from '../components/GeneralScript'
+import { useParams } from 'react-router-dom';
 
 const ProductDetails = () => {
+    const { id } = useParams(); // Accessing the id parameter from the URL
+    const [products, setProducts] = useState([]);
+    const [products2, setProducts2] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const response = await fetch(`https://localhost:5173/api/products/${id}`);
+            // const response = await fetch('https://yolohome-homanhquan-api.onrender.com/dashboard');
+            if (!response.ok) {
+              throw new Error('Failed to fetch data');
+            }
+            const data = await response.json();
+            setProducts(data);
+          } catch (error) {
+            console.error('Error fetching data:', error);
+          }
+        };
+    
+        // Fetch data initially
+        fetchData();
+
+        const fetchData2 = async () => {
+            try {
+              const response = await fetch('https://localhost:5173/api/products');
+              // const response = await fetch('https://yolohome-homanhquan-api.onrender.com/dashboard');
+              if (!response.ok) {
+                throw new Error('Failed to fetch data');
+              }
+              const data = await response.json();
+              setProducts2(data);
+            } catch (error) {
+              console.error('Error fetching data:', error);
+            }
+          };
+      
+          // Fetch data initially
+          fetchData2();
+      }, []);
+      
   return (
     <div>
     <ProductDetailsHead />
@@ -26,22 +67,22 @@ const ProductDetails = () => {
                 </li>
                 */}
                 <li className="nav-item">
-                <a className="nav-link" href="gallery">MENU</a>
+                <a className="nav-link" href="../menu">MENU</a>
                 </li>
                 <li className="nav-item">
-                <a className="nav-link" href="contact">CONTACT</a>
+                <a className="nav-link" href="../contact">CONTACT</a>
                 </li>
                 <li className="nav-item">
-                    <a className="nav-link" href="about">ABOUT</a>
+                    <a className="nav-link" href="../about">ABOUT</a>
                 </li>
                 <li className="nav-item">
-                <a className="nav-link" href="history">HISTORY</a>
+                <a className="nav-link" href="../history">HISTORY</a>
                 </li>
                 <li className="nav-item">
                 <a className="nav-link active" href="#">NAME</a>
                 </li>
                 <li className="nav-item">
-                <a href="cart">
+                <a href="../cart">
                     <i className="fa-solid fa-cart-shopping" />
                 </a>
                 </li>
@@ -56,65 +97,67 @@ const ProductDetails = () => {
         </div>
         </nav>
     </header>
-    <div className="flex-box">
-        <div className="left">
-        <div className="big-img">
-            <img src="{{info.photo}}" />
-        </div>
-        <div className="images">
-        </div>
-        </div>
-        <div className="right">
-        <div className="pname">{'{'}{'{'}info.csw_products{'}'}{'}'}</div>
-        <div className="ratings">
-            <i className="fas fa-star" />
-            <i className="fas fa-star" />
-            <i className="fas fa-star" />
-            <i className="fas fa-star" />
-            <i className="fas fa-star-half-alt" />
-        </div>
-        <div className="price">{'{'}{'{'}info.price{'}'}{'}'} VND</div>
-        <div className="right product-details">
-            <p>{'{'}{'{'}info.description{'}'}{'}'}</p>
-        </div>
-        <div className="btn-box" style={{marginBottom: '10px'}}>
-            <form action="/shoppingcart/addToCart2" method="POST" style={{display: 'inline-block'}}>
-            <p>Quantity:
-                <input type="number" name="quantityInput" min={1} max={99} defaultValue={1} required />
-                <input type="hidden" name="id" defaultValue="{{info._id}}" />
-            </p>
-            <button className="buy-btn">Buy Now</button>
-            </form>
-            <form className="addToCartForm" action="/shoppingcart/addToCart3" method="POST" style={{display: 'inline-block'}}>
-            <input type="hidden" name="id" defaultValue="{{info._id}}" />
-            <button className="cart-btn">Add 1 to Cart</button>
-            </form>
-        </div>
-        </div>
-    </div>
-    <h2>Other products</h2>
-    <div className="mt-4">
-        <div className="row">
-        {'{'}{'{'}#each otherProducts{'}'}{'}'}
-        <div className="col">
-            <div className="card card-course-item" style={{width: '11rem', height: '300px', margin: '0 0 20px 10px'}}>
-            <img className="card-img-top" style={{width: '100%', height: '100px'}} src="{{this.photo}}" />
-            <div className="card-body">
-                <h5 className="card-title">{'{'}{'{'}this.csw_products{'}'}{'}'}</h5>
-                {/*
-                <p class="card-text" style="font-size: 12px; height: 80px; overflow: hidden">{{this.description}}</p>
-                */}
-                <div style={{position: 'absolute', bottom: '65px', left: 0, right: 0, textAlign: 'center'}}>
-                <p className="card-text"><b>{'{'}{'{'}this.price{'}'}{'}'} VND</b></p>
-                </div>
-                <a href="/product_details/{{this._id}}" className="btn btn-primary" style={{position: 'absolute', bottom: '20px', left: '10px', right: '10px'}}>More Details</a>
-            </div>  
+    {products && (
+        <div className="flex-box">
+            <div className="left">
+            <div className="big-img">
+                <img src={products.photo} />
+            </div>
+            <div className="images">
+            </div>
+            </div>
+            <div className="right">
+            <div className="pname">{products.csw_products}</div>
+            <div className="ratings">
+                <i className="fas fa-star" />
+                <i className="fas fa-star" />
+                <i className="fas fa-star" />
+                <i className="fas fa-star" />
+                <i className="fas fa-star-half-alt" />
+            </div>
+            <div className="price">{products.info} VND</div>
+            <div className="right product-details">
+                <p>{products.description}</p>
+            </div>
+            <div className="btn-box" style={{marginBottom: '10px'}}>
+                <form action="/shoppingcart/addToCart2" method="POST" style={{display: 'inline-block'}}>
+                <p>Quantity:
+                    <input type="number" name="quantityInput" min={1} max={99} defaultValue={1} required />
+                    <input type="hidden" name="id" defaultValue={products.id} />
+                </p>
+                <button className="buy-btn">Buy Now</button>
+                </form>
+                <form className="addToCartForm" action="/shoppingcart/addToCart3" method="POST" style={{display: 'inline-block'}}>
+                <input type="hidden" name="id" defaultValue={products.id} />
+                <button className="cart-btn">Add 1 to Cart</button>
+                </form>
+            </div>
             </div>
         </div>
-        {'{'}{'{'}/each{'}'}{'}'}
-        </div>
+    )}
+    <h2>Other products</h2>
+    <div className="mt-4">
+            <div className="row">
+            {products2 && products2.map((product) => (
+            <div className="col">
+                <div className="card card-course-item" style={{width: '11rem', height: '300px', margin: '0 0 20px 10px'}}>
+                <img className="card-img-top" style={{width: '100%', height: '100px'}} src={product.photo} />
+                <div className="card-body">
+                    <h5 className="card-title">{product.csw_products}</h5>
+                    {/*
+                    <p class="card-text" style="font-size: 12px; height: 80px; overflow: hidden">{{this.description}}</p>
+                    */}
+                    <div style={{position: 'absolute', bottom: '65px', left: 0, right: 0, textAlign: 'center'}}>
+                    <p className="card-text"><b>{product.price} VND</b></p>
+                    </div>
+                    <a href={`/details/${product.id}`} className="btn btn-primary" style={{position: 'absolute', bottom: '20px', left: '10px', right: '10px'}}>More Details</a>
+                </div>  
+                </div>
+            </div>
+            ))}
+            </div>
     </div>
-    <ProductDetailsScript />
+    <GeneralScript />
     </div>
   )
 }

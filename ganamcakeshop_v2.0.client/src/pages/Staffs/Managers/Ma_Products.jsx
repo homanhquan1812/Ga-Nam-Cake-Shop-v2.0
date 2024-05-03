@@ -64,6 +64,25 @@ const Ma_Products = () => {
         return totalRow;
       };
 
+      function myFunction() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("product-searchbar");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+            if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+            }       
+        }
+    }
+
   return (
     <div>
     <Ma_ProductsHead />
@@ -176,7 +195,7 @@ const Ma_Products = () => {
                     <button style={{marginLeft: '10px'}} type="button" className="btn btn-danger" id="discardProductBtn" onclick="window.location.href='/managers/products'">Discard this product</button>
                 </div>
                 </div>
-                <input type="text" id="product-searchbar" onkeyup="myFunction()" placeholder="Search for products." />
+                <input type="text" id="product-searchbar" onKeyUp={myFunction} placeholder="Search for products." />
                 {/*
                         <div id="warning3" style="margin-top: 10px; font-size: 15px; display: none;">
                                 <div style="color: red; font-weight: bold;">Notes: </div>

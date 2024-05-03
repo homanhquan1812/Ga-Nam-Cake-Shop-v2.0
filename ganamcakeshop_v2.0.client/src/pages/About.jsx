@@ -1,6 +1,6 @@
 import React from 'react'
 import AboutsHead from '../components/AboutsHead'
-import AboutsScript from '../components/AboutsScript'
+import GeneralScript from '../components/GeneralScript'
 
 const About = () => {
   return (
@@ -307,7 +307,7 @@ const About = () => {
         {/* Jquery Waypoint  */}
         {/* BS5 */}
         {/* CountUP JS  */}
-        <AboutsScript />
+        <GeneralScript />
     </div>
   )
 }

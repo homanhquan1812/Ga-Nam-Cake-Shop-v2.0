@@ -1,5 +1,5 @@
 import React from 'react'
-import HomesScript from '../components/HomesScript'
+import GeneralScript from '../components/GeneralScript'
 import HomesHead from '../components/HomesHead'
 
 const Home = () => {
@@ -313,7 +313,7 @@ const Home = () => {
         {/* BS5 */}
         {/* CountUP JS  */} 
         {/* Back to top JS  */}
-        <HomesScript />
+        <GeneralScript />
     </div>
   )
 }

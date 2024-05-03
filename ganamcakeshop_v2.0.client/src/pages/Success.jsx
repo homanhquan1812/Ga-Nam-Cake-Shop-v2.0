@@ -1,6 +1,6 @@
 import React from 'react'
 import SuccesssHead from '../components/SuccesssHead'
-import SuccesssScript from '../components/SuccesssScript'
+import GeneralScript from '../components/GeneralScript'
 
 const Success = () => {
   return (
@@ -26,7 +26,7 @@ const Success = () => {
                 </li>
                 */}
                 <li className="nav-item">
-                <a className="nav-link" href="gallery">MENU</a>
+                <a className="nav-link" href="menu">MENU</a>
                 </li>
                 <li className="nav-item">
                 <a className="nav-link" href="contact">CONTACT</a>
@@ -139,7 +139,7 @@ const Success = () => {
     {/* Jquery Waypoint  */}
     {/* BS5 */}
     {/* CountUP JS  */}
-    <SuccesssScript />
+    <GeneralScript />
     </div>
   )
 }

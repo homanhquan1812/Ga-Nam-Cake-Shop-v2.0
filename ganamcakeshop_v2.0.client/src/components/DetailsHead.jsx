@@ -34,6 +34,7 @@ class DetailsHead extends React.Component {
                 <link rel="stylesheet" href="/css/owl.theme.default.min.css" />
                 <link rel="stylesheet" href="/css/main.css" />
                 <link rel="stylesheet" href="/css/linea-icon.css" />
+                <link rel="stylesheet" href="/css/productDetails.css" />
             </Helmet>
         </div>
     );

@@ -1,6 +1,6 @@
 import React from 'react'
 import CartsHead from '../components/CartsHead'
-import CartsScript from '../components/CartsScript'
+import GeneralScript from '../components/GeneralScript'
 
 const Cart = () => {
   return (
@@ -26,7 +26,7 @@ const Cart = () => {
                 </li>
                 */}
                 <li className="nav-item">
-                <a className="nav-link" href="gallery">MENU</a>
+                <a className="nav-link" href="menu">MENU</a>
                 </li>
                 <li className="nav-item">
                 <a className="nav-link" href="contact">CONTACT</a>
@@ -191,7 +191,7 @@ const Cart = () => {
         <p> Copyright © 2023 <span>Gà Nấm Cake Shop</span>. All rights reserved.</p>
         </div>
     </footer>
-    <CartsScript />
+    <GeneralScript />
     </div>
   )
 }

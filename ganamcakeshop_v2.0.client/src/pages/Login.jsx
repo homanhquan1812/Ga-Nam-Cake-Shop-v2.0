@@ -1,9 +1,54 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import LoginsHead from '../components/LoginsHead'
 import { IonIcon } from '@ionic/react';
-import { close } from 'ionicons/icons';
+import { arrowBackOutline, close } from 'ionicons/icons';
+import GeneralScript from '../components/GeneralScript';
 
 const Login = () => {
+    function myFunction3() {
+        var x = document.getElementById("password");
+        var changeLogo = document.getElementById("changeLogo")
+
+        if (x.type === "password") {
+            x.type = "text";
+            changeLogo.setAttribute('name', 'eye');
+        } else {
+            x.type = "password";
+            changeLogo.setAttribute('name', 'eye-off');
+        }
+    }
+    function myFunction2() {
+        var x = document.getElementById("pass");
+        var changeLogo = document.getElementById("changeLogo2")
+
+        if (x.type === "password") {
+            x.type = "text";
+            changeLogo.setAttribute('name', 'eye');
+        } else {
+            x.type = "password";
+            changeLogo.setAttribute('name', 'eye-off');
+        }
+    }
+    function validateForm() {
+        // Get the value from the gender input
+        var genderValue = document.getElementById('gender').value.trim();
+
+        // Check if the value is either "Male" or "Female"
+        if (genderValue !== 'Male' && genderValue !== 'Female') {
+            // If not valid, show an alert and prevent form submission
+            alert('Please enter a valid gender (Male or Female).');
+            event.preventDefault(); // Added line to prevent submission
+        } else {
+            var termsCheckbox = document.getElementById('termsCheckbox');
+            if (termsCheckbox.checked) {
+                document.getElementById('myForm').submit();
+            } else {
+                alert('Please agree to the Terms and Conditions.');
+                event.preventDefault();
+            }
+        }
+    }
+
   return (
     <div>
         <LoginsHead />
@@ -14,7 +59,7 @@ const Login = () => {
             </span>
             <div className="button-active" style={{display: 'none'}}>
             <span className="icon-close2 login-link">
-                <ion-icon name="arrow-back-outline" />
+                <IonIcon icon={arrowBackOutline} />
             </span>
             </div>
             <div className="form-box login">
@@ -29,13 +74,15 @@ const Login = () => {
                 </div>
                 <div className="inputbox">
                     <input type="password" id="password" name="password" className="password" required />
-                    <span className="icon"><ion-icon name="eye-off" id="changeLogo" onclick="myFunction3()" /></span>
+                    <span className="icon"><ion-icon name="eye-off" id="changeLogo" onClick={myFunction3} /></span>
                     <label>Password</label>
                 </div>
+                {/*
                 <div className="remember-forgot">
                     <label><input type="checkbox" />Remember me</label>
                     <a href="#">Forgot Password?</a>
                 </div>
+                */}
                 <button type="submit" name="submit">Login</button>
                 <div className="registerBtn">
                     <p>Don't have an account? <a href="#" className="register-link">Click here</a></p>
@@ -80,7 +127,7 @@ const Login = () => {
                     <label>Email</label>
                     </div>
                     <div className="inputbox">
-                    <span className="icon"><ion-icon id="changeLogo2" name="eye-off" onclick="myFunction2()" /></span>
+                    <span className="icon"><ion-icon id="changeLogo2" name="eye-off" onClick={myFunction2} /></span>
                     <input type="password" id="pass" name="pass" required />
                     <label>Password</label>
                     </div>
@@ -109,7 +156,7 @@ const Login = () => {
                 <div className="remember-forgot">
                     <label><input type="checkbox" id="termsCheckbox" />I agree to the Terms and Conditions.</label>
                 </div>
-                <button type="submit" className="submit" onclick="validateForm()">Register</button>
+                <button type="submit" className="submit" onClick={validateForm}>Register</button>
                 {/*
                     <div class="registerBtn">
                         <p>Already have an account? <a href="#" class="login-link">Login</a></p>
@@ -119,6 +166,7 @@ const Login = () => {
             </div>
             </div>
         </div></section>
+        <GeneralScript />
     </div>
   )
 }

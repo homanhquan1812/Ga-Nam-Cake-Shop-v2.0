@@ -1,8 +1,52 @@
-import React from 'react'
+import { React, useState, useEffect } from 'react';
 import MenusHead from '../components/MenusHead'
-import MenusScript from '../components/MenusScript'
+import GeneralScript from '../components/GeneralScript'
 
 const Menu = () => {
+    const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const response = await fetch('https://localhost:5173/api/products');
+            // const response = await fetch('https://yolohome-homanhquan-api.onrender.com/dashboard');
+            if (!response.ok) {
+              throw new Error('Failed to fetch data');
+            }
+            const data = await response.json();
+            setProducts(data);
+          } catch (error) {
+            console.error('Error fetching data:', error);
+          }
+        };
+    
+        // Fetch data initially
+        fetchData();
+      }, []);
+
+      function filterProducts() {
+        var input, filter, items, type, i, txtValue;
+        input = document.getElementById("product-searchbar123");
+        filter = input.value.toUpperCase();
+        items = document.getElementsByClassName("showcase__item");
+
+        for (i = 0; i < items.length; i++) {
+            type = items[i].getAttribute("data-category").toUpperCase();
+            txtValue = items[i].innerText || items[i].textContent;
+
+            if (type.indexOf(filter) > -1 || txtValue.toUpperCase().indexOf(filter) > -1) {
+                items[i].removeAttribute("style");
+            } else {
+                items[i].style.display = "none";
+            }
+        }
+    }
+
+    document.querySelectorAll(".demo").forEach(function(element) {
+        var x = Math.floor(Math.random() * 100) + 1;
+        element.innerHTML = x;
+    });
+
   return (
     <div>
     <MenusHead />
@@ -26,7 +70,7 @@ const Menu = () => {
                 </li>
                 */}
                 <li className="nav-item">
-                <a className="nav-link" href="gallery">MENU</a>
+                <a className="nav-link" href="menu">MENU</a>
                 </li>
                 <li className="nav-item">
                 <a className="nav-link" href="contact">CONTACT</a>
@@ -62,7 +106,7 @@ const Menu = () => {
         <div className="section-info">
             <h2>Joy baked into every bite.</h2>
             <p className="text-center">Enjoy fresh pastries, warm breads, crafted coffees, our signature cakes and more.A delicious variety of sweet and savory pastries and donuts, freshly baked every day.</p>
-            <input type="text" id="product-searchbar123" onkeyup="filterProducts()" placeholder="Search for preferred products." />
+            <input type="text" id="product-searchbar123" onKeyUp={filterProducts} placeholder="Search for preferred products." />
         </div>
         </div>
         <div className="filters-button-group">
@@ -74,199 +118,204 @@ const Menu = () => {
         <button className="button" data-filter=".DRINKS">DRINKS</button>
         <button className="button" data-filter=".ICECREAM">ICE CREAM</button>
         </div>
+
         <div className="showcase__content row">
-        {'{'}{'{'}#each products{'}'}{'}'}
-        {'{'}{'{'}#if (eq this.type "Bread"){'}'}{'}'}
-        <div className=" showcase__item BREAD " data-category="transition">
-            <div className="showcase__photo">
-            <img style={{height: '400px', width: '100%'}} src="{{this.photo}}" alt="" />
-            <div className="showcase__info">
-                {/*
-                    <div class="showcase__btn">
-                        <a href="#" target="_blank">
-                            <i class="icon-basic_link"></i>
-                        </a>
+        {products && products.map((product) => (
+            !product.deleted && product.type === "Bread" && (
+                <div className=" showcase__item BREAD " data-category="transition">
+                    <div className="showcase__photo">
+                    <img style={{height: '400px', width: '100%'}} src={product.photo} alt="" />
+                    <div className="showcase__info">
+                        {/*
+                            <div class="showcase__btn">
+                                <a href="#" target="_blank">
+                                    <i class="icon-basic_link"></i>
+                                </a>
+                            </div>
+                            */}
+                        <div className="showcase__des">
+                        <h4>
+                            <a href={`/details/${product.id}`}>{product.csw_products}</a>
+                        </h4>
+                        Sold:<p className="demo" />
+                        <p>
+                            <a href="#"><button type="button" className="btn btn-primary">{product.price} VND</button></a>
+                            <a>
+                            </a></p><form className="addToCartForm" action="/shoppingcart/addToCart" method="POST"><a>
+                            <input type="hidden" name="id" defaultValue={product.id} />
+                            <button type="submit" className="btn btn-danger">Add to cart</button>
+                            </a></form>
+                        <p />
+                        </div>
                     </div>
-                    */}
-                <div className="showcase__des">
-                <h4>
-                    <a href="/product_details/{{_id}}">{'{'}{'{'}this.csw_products{'}'}{'}'}</a>
-                </h4>
-                Sold:<p className="demo" />
-                <p>
-                    <a href="#"><button type="button" className="btn btn-primary">{'{'}{'{'}this.price{'}'}{'}'} VND</button></a>
-                    <a>
-                    </a></p><form className="addToCartForm" action="/shoppingcart/addToCart" method="POST"><a>
-                    <input type="hidden" name="id" defaultValue="{{this._id}}" />
-                    <button type="submit" className="btn btn-danger">Add to cart</button>
-                    </a></form>
-                <p />
+                    </div>
+                </div>
+            )
+        ))}
+        
+        {products && products.map((product) => (
+            !product.deleted && product.type === "Pastries" && (
+                <div className=" showcase__item PASTRIES " data-category="metalloid">
+                <div className="showcase__photo">
+                <img style={{height: '400px', width: '100%'}} src={product.photo} alt="" />
+                <div className="showcase__info">
+                    {/*
+                        <div class="showcase__btn">
+                            <a href="#" target="_blank">
+                                <i class="icon-basic_link"></i>
+                            </a>
+                        </div>
+                        */}
+                    <div className="showcase__des">
+                    <h4>
+                        <a href={`/details/${product.id}`}>{product.csw_products}</a>
+                    </h4>
+                    Sold:<p className="demo" />
+                    <p>
+                        <a href="#"><button type="button" className="btn btn-primary">{product.price} VND</button></a>
+                        <a>
+                        </a></p><form className="addToCartForm" action="/shoppingcart/addToCart" method="POST"><a>
+                        <input type="hidden" name="id" defaultValue={product.id} />
+                        <button type="submit" className="btn btn-danger">Add to cart</button>
+                        </a></form>
+                    <p />
+                    </div>
+                </div>
                 </div>
             </div>
-            </div>
-        </div>
-        {'{'}{'{'}/if{'}'}{'}'}
-        {'{'}{'{'}/each{'}'}{'}'}
-        {'{'}{'{'}#each products{'}'}{'}'}
-        {'{'}{'{'}#if (eq this.type "Pastries"){'}'}{'}'}
-        <div className=" showcase__item PASTRIES " data-category="metalloid">
-            <div className="showcase__photo">
-            <img style={{height: '400px', width: '100%'}} src="{{this.photo}}" alt="" />
-            <div className="showcase__info">
-                {/*
-                    <div class="showcase__btn">
-                        <a href="#" target="_blank">
-                            <i class="icon-basic_link"></i>
-                        </a>
+            )
+        ))}
+
+        {products && products.map((product) => (
+            !product.deleted && product.type === "Cake Slice" && (
+                <div className=" showcase__item CAKESLICES " data-category="post-transition">
+                <div className="showcase__photo">
+                <img style={{height: '400px', width: '100%'}} src={product.photo} alt="" />
+                <div className="showcase__info">
+                    {/*
+                        <div class="showcase__btn">
+                            <a href="#" target="_blank">
+                                <i class="icon-basic_link"></i>
+                            </a>
+                        </div>
+                        */}
+                    <div className="showcase__des">
+                    <h4>
+                        <a href={`/details/${product.id}`}>{product.csw_products}</a>
+                    </h4>
+                    Sold:<p className="demo" />
+                    <p>
+                        <a href="#"><button type="button" className="btn btn-primary">{product.price} VND</button></a>
+                        <a>
+                        </a></p><form className="addToCartForm" action="/shoppingcart/addToCart" method="POST"><a>
+                        <input type="hidden" name="id" defaultValue={product.id} />
+                        <button type="submit" className="btn btn-danger">Add to cart</button>
+                        </a></form>
+                    <p />
                     </div>
-                    */}
-                <div className="showcase__des">
-                <h4>
-                    <a href="/product_details/{{_id}}">{'{'}{'{'}this.csw_products{'}'}{'}'}</a>
-                </h4>
-                Sold:<p className="demo" />
-                <p>
-                    <a href="#"><button type="button" className="btn btn-primary">{'{'}{'{'}this.price{'}'}{'}'} VND</button></a>
-                    <a>
-                    </a></p><form className="addToCartForm" action="/shoppingcart/addToCart" method="POST"><a>
-                    <input type="hidden" name="id" defaultValue="{{this._id}}" />
-                    <button type="submit" className="btn btn-danger">Add to cart</button>
-                    </a></form>
-                <p />
+                </div>
                 </div>
             </div>
-            </div>
-        </div>
-        {'{'}{'{'}/if{'}'}{'}'}
-        {'{'}{'{'}/each{'}'}{'}'}
-        {'{'}{'{'}#each products{'}'}{'}'}
-        {'{'}{'{'}#if (eq this.type "Cake Slice"){'}'}{'}'}
-        <div className=" showcase__item CAKESLICES " data-category="post-transition">
-            <div className="showcase__photo">
-            <img style={{height: '400px', width: '100%'}} src="{{this.photo}}" alt="" />
-            <div className="showcase__info">
-                {/*
-                    <div class="showcase__btn">
-                        <a href="#" target="_blank">
-                            <i class="icon-basic_link"></i>
-                        </a>
+            )
+        ))}
+        
+        {products && products.map((product) => (
+            !product.deleted && product.type === "Cheesecake" && (
+                <div className=" showcase__item CHEESECAKES " data-category="post-transition">
+                <div className="showcase__photo">
+                <img style={{height: '400px', width: '100%'}} src={product.photo} alt="" />
+                <div className="showcase__info">
+                    {/*
+                        <div class="showcase__btn">
+                            <a href="#" target="_blank">
+                                <i class="icon-basic_link"></i>
+                            </a>
+                        </div>
+                        */}
+                    <div className="showcase__des">
+                    <h4>
+                        <a href={`/details/${product.id}`}>{product.csw_products}</a>
+                    </h4>
+                    Sold:<p className="demo" />
+                    <p>
+                        <a href="#"><button type="button" className="btn btn-primary">{product.price} VND</button></a>
+                        <a>
+                        </a></p><form className="addToCartForm" action="/shoppingcart/addToCart" method="POST"><a>
+                        <input type="hidden" name="id" defaultValue={product.id} />
+                        <button type="submit" className="btn btn-danger">Add to cart</button>
+                        </a></form>
+                    <p />
                     </div>
-                    */}
-                <div className="showcase__des">
-                <h4>
-                    <a href="/product_details/{{_id}}">{'{'}{'{'}this.csw_products{'}'}{'}'}</a>
-                </h4>
-                Sold:<p className="demo" />
-                <p>
-                    <a href="#"><button type="button" className="btn btn-primary">{'{'}{'{'}this.price{'}'}{'}'} VND</button></a>
-                    <a>
-                    </a></p><form className="addToCartForm" action="/shoppingcart/addToCart" method="POST"><a>
-                    <input type="hidden" name="id" defaultValue="{{this._id}}" />
-                    <button type="submit" className="btn btn-danger">Add to cart</button>
-                    </a></form>
-                <p />
+                </div>
                 </div>
             </div>
-            </div>
-        </div>
-        {'{'}{'{'}/if{'}'}{'}'}
-        {'{'}{'{'}/each{'}'}{'}'}
-        {'{'}{'{'}#each products{'}'}{'}'}
-        {'{'}{'{'}#if (eq this.type "Cheesecake"){'}'}{'}'}
-        <div className=" showcase__item CHEESECAKES " data-category="post-transition">
-            <div className="showcase__photo">
-            <img style={{height: '400px', width: '100%'}} src="{{this.photo}}" alt="" />
-            <div className="showcase__info">
-                {/*
-                    <div class="showcase__btn">
-                        <a href="#" target="_blank">
-                            <i class="icon-basic_link"></i>
-                        </a>
+            )
+        ))}
+
+        {products && products.map((product) => (
+            !product.deleted && product.type === "Drinks" && (
+                <div className=" showcase__item DRINKS " data-category="transition">
+                <div className="showcase__photo">
+                <img style={{height: '400px', width: '100%'}} src={product.photo} alt="" />
+                <div className="showcase__info">
+                    {/*
+                        <div class="showcase__btn">
+                            <a href="#" target="_blank">
+                                <i class="icon-basic_link"></i>
+                            </a>
+                        </div>
+                        */}
+                    <div className="showcase__des">
+                    <h4>
+                        <a href={`/details/${product.id}`}>{product.csw_products}</a>
+                    </h4>
+                    Sold:<p className="demo" />
+                    <p>
+                        <a href="#"><button type="button" className="btn btn-primary">{product.price} VND</button></a>
+                        <a>
+                        </a></p><form className="addToCartForm" action="/shoppingcart/addToCart" method="POST"><a>
+                        <input type="hidden" name="id" defaultValue={product.id} />
+                        <button type="submit" className="btn btn-danger">Add to cart</button>
+                        </a></form>
+                    <p />
                     </div>
-                    */}
-                <div className="showcase__des">
-                <h4>
-                    <a href="/product_details/{{_id}}">{'{'}{'{'}this.csw_products{'}'}{'}'}</a>
-                </h4>
-                Sold:<p className="demo" />
-                <p>
-                    <a href="#"><button type="button" className="btn btn-primary">{'{'}{'{'}this.price{'}'}{'}'} VND</button></a>
-                    <a>
-                    </a></p><form className="addToCartForm" action="/shoppingcart/addToCart" method="POST"><a>
-                    <input type="hidden" name="id" defaultValue="{{this._id}}" />
-                    <button type="submit" className="btn btn-danger">Add to cart</button>
-                    </a></form>
-                <p />
+                </div>
                 </div>
             </div>
-            </div>
-        </div>
-        {'{'}{'{'}/if{'}'}{'}'}
-        {'{'}{'{'}/each{'}'}{'}'}
-        {'{'}{'{'}#each products{'}'}{'}'}
-        {'{'}{'{'}#if (eq this.type "Drinks"){'}'}{'}'}
-        <div className=" showcase__item DRINKS " data-category="transition">
-            <div className="showcase__photo">
-            <img style={{height: '400px', width: '100%'}} src="{{this.photo}}" alt="" />
-            <div className="showcase__info">
-                {/*
-                    <div class="showcase__btn">
-                        <a href="#" target="_blank">
-                            <i class="icon-basic_link"></i>
-                        </a>
+            )
+        ))}
+        {products && products.map((product) => (
+            !product.deleted && product.type === "Ice Cream" && (
+                <div className=" showcase__item ICECREAM " data-category="alkali">
+                <div className="showcase__photo">
+                <img style={{height: '400px', width: '100%'}} src={product.photo} alt="" />
+                <div className="showcase__info">
+                    {/*
+                        <div class="showcase__btn">
+                            <a href="#" target="_blank">
+                                <i class="icon-basic_link"></i>
+                            </a>
+                        </div>
+                        */}
+                    <div className="showcase__des">
+                    <h4>
+                        <a href={`/details/${product.id}`}>{product.csw_products}</a>
+                    </h4>
+                    Sold:<p className="demo" />
+                    <p>
+                        <a href="#"><button type="button" className="btn btn-primary">{product.price} VND</button></a>
+                        <a>
+                        </a></p><form className="addToCartForm" action="/shoppingcart/addToCart" method="POST"><a>
+                        <input type="hidden" name="id" defaultValue={product.id} />
+                        <button type="submit" className="btn btn-danger">Add to cart</button>
+                        </a></form>
+                    <p />
                     </div>
-                    */}
-                <div className="showcase__des">
-                <h4>
-                    <a href="/product_details/{{_id}}">{'{'}{'{'}this.csw_products{'}'}{'}'}</a>
-                </h4>
-                Sold:<p className="demo" />
-                <p>
-                    <a href="#"><button type="button" className="btn btn-primary">{'{'}{'{'}this.price{'}'}{'}'} VND</button></a>
-                    <a>
-                    </a></p><form className="addToCartForm" action="/shoppingcart/addToCart" method="POST"><a>
-                    <input type="hidden" name="id" defaultValue="{{this._id}}" />
-                    <button type="submit" className="btn btn-danger">Add to cart</button>
-                    </a></form>
-                <p />
+                </div>
                 </div>
             </div>
-            </div>
-        </div>
-        {'{'}{'{'}/if{'}'}{'}'}
-        {'{'}{'{'}/each{'}'}{'}'}
-        {'{'}{'{'}#each products{'}'}{'}'}
-        {'{'}{'{'}#if (eq this.type "Ice Cream"){'}'}{'}'}
-        <div className=" showcase__item ICECREAM " data-category="alkali">
-            <div className="showcase__photo">
-            <img style={{height: '400px', width: '100%'}} src="{{this.photo}}" alt="" />
-            <div className="showcase__info">
-                {/*
-                    <div class="showcase__btn">
-                        <a href="#" target="_blank">
-                            <i class="icon-basic_link"></i>
-                        </a>
-                    </div>
-                    */}
-                <div className="showcase__des">
-                <h4>
-                    <a href="/product_details/{{_id}}">{'{'}{'{'}this.csw_products{'}'}{'}'}</a>
-                </h4>
-                Sold:<p className="demo" />
-                <p>
-                    <a href="#"><button type="button" className="btn btn-primary">{'{'}{'{'}this.price{'}'}{'}'} VND</button></a>
-                    <a>
-                    </a></p><form className="addToCartForm" action="/shoppingcart/addToCart" method="POST"><a>
-                    <input type="hidden" name="id" defaultValue="{{this._id}}" />
-                    <button type="submit" className="btn btn-danger">Add to cart</button>
-                    </a></form>
-                <p />
-                </div>
-            </div>
-            </div>
-        </div>
-        {'{'}{'{'}/if{'}'}{'}'}
-        {'{'}{'{'}/each{'}'}{'}'}
+            )
+        ))}
         {/*
         <div class=" showcase__item WEB CRAFTS " data-category="alkali">
             <div class="showcase__photo">
@@ -383,7 +432,7 @@ const Menu = () => {
     {/* Jquery Waypoint  */}
     {/* BS5 */}
     {/* CountUP JS  */}
-    <MenusScript />
+    <GeneralScript />
     </div>
   )
 }
