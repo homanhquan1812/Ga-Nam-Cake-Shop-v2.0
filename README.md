@@ -24,6 +24,12 @@ This website is designed to facilitate convenient online ordering from our cake 
 - Added many other bug fixes and performance improvements.
 - Old version: [Click here](https://github.com/homanhquan1812/Ga-Nam-Cake-Shop).
 
+# Known bugs
+1. When there's no order in Staffs' pages, the number by <b>New Orders</b> still shows 0 even though it's been set to <b>display: none</b>.
+
+# Features that need to be added
+1. Responsive design.
+
 # Development status
 > Under development.
 
@@ -38,11 +44,6 @@ This website is designed to facilitate convenient online ordering from our cake 
    - <b>Customer</b>: maimai456 - Mai@456#1990
    - <b>Employee</b>: nguyenanhthao123 - Thao#123@2022
    - <b>Manager</b>: tranvanan321 - An#321@1985
-
-# Known bugs
-1. When there's no order in Staffs' pages, the number by <b>New Orders</b> still shows 0 even though it's been set to <b>display: none</b>.
-
-# Features that need to be added
 
 # Screenshots
 ### Customers
