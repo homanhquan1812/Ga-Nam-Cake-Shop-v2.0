@@ -24,7 +24,7 @@ This website is designed to facilitate convenient online ordering from our cake 
 - Old version: [Click here](https://github.com/homanhquan1812/Ga-Nam-Cake-Shop).
 
 # Development status
-> Under development.
+> Temporarily stopped.
 
 # How to use
 1. Open this project solution on <b>Visual Studio</b>.
