@@ -18,6 +18,7 @@ This website is designed to facilitate convenient online ordering from our cake 
 
 # Version information
 - Revamped by <b>Hồ Mạnh Quân</b>.
+- Fixed "Managers can't remove any member(s) in Members section." bug.
 - Removed both <b>Remember me</b> and <b>Forgot password</b>.
 - Added Real-time data.
 - Added bug fixes and performance improvements.
