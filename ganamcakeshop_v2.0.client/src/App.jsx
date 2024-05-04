@@ -49,7 +49,7 @@ const App = () => {
         {/* Employees */}
         <Route exact path="/employees" element={<Em_Overview />} />
         <Route path="/employees/overview" element={<Em_Overview />} />
-        <Route path="/employees/changeinfo" element={<Em_ChangeInfo />} />
+        <Route path="/employees/changeinfo/:id" element={<Em_ChangeInfo />} />
         <Route path="/employees/feedbacks" element={<Em_Feedbacks />} />
         <Route path="/employees/notes" element={<Em_Notes />} />
         <Route path="/employees/orders" element={<Em_Orders />} />
@@ -60,7 +60,7 @@ const App = () => {
         {/* Managers */}
         <Route exact path="/managers" element={<Ma_Overview />} />
         <Route path="/managers/overview" element={<Ma_Overview />} />
-        <Route path="/managers/changeinfo" element={<Ma_ChangeInfo />} />
+        <Route path="/managers/changeinfo/:id" element={<Ma_ChangeInfo />} />
         <Route path="/managers/feedbacks" element={<Ma_Feedbacks />} />
         <Route path="/managers/notes" element={<Ma_Notes />} />
         <Route path="/managers/orders" element={<Ma_Orders />} />

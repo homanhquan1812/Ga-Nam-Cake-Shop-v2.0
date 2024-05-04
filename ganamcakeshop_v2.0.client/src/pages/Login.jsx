@@ -1,10 +1,16 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import LoginsHead from '../components/LoginsHead'
 import { IonIcon } from '@ionic/react';
 import { arrowBackOutline, close } from 'ionicons/icons';
+import { redirect, useNavigate } from 'react-router-dom';
 import GeneralScript from '../components/GeneralScript';
 
 const Login = () => {
+    const [csw_username, setUsername] = useState([]);
+    const [csw_password, setPassword] = useState([])
+    const [errorMessage, setErrorMessage] = useState('');
+    const navigateTo = useNavigate();
+
     function myFunction3() {
         var x = document.getElementById("password");
         var changeLogo = document.getElementById("changeLogo")
@@ -65,15 +71,15 @@ const Login = () => {
             <div className="form-box login">
             <div className="form-value">
                 {/* <a href="home"><span class="material-symbols-outlined" style="color: white;">arrow_back</span></a> */}
-                <form action="/login/loginSubmit" method="POST">
+                <form action="/login/loginSubmit" method='POST'>
                 <h2>Login</h2>
                 <div className="inputbox">
-                    <input type="username" id="username" name="username" required />
+                    <input type="username" id="username" name="username" onChange={(e) => setUsername(e.target.value)} required />
                     <span className="icon"><ion-icon name="person" /></span>
                     <label>Username</label>
                 </div>
                 <div className="inputbox">
-                    <input type="password" id="password" name="password" className="password" required />
+                    <input type="password" id="password" name="password" className="password" onChange={(e) => setPassword(e.target.value)} required />
                     <span className="icon"><ion-icon name="eye-off" id="changeLogo" onClick={myFunction3} /></span>
                     <label>Password</label>
                 </div>
@@ -83,7 +89,7 @@ const Login = () => {
                     <a href="#">Forgot Password?</a>
                 </div>
                 */}
-                <button type="submit" name="submit">Login</button>
+                <button type="submit" name="submit" onClick={submit}>Login</button>
                 <div className="registerBtn">
                     <p>Don't have an account? <a href="#" className="register-link">Click here</a></p>
                 </div>

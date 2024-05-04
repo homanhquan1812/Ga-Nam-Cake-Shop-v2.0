@@ -3,8 +3,26 @@ import Ma_SettingsHead from '../../../components/Staffs/Managers/Ma_SettingsHead
 
 const Ma_Settings = () => {
     const [orders, setOrders] = useState([]);
+    const [managers, setManagers] = useState([]);
 
     useEffect(() => {
+        const fetchData = async () => {
+            try {
+              const response = await fetch(`https://localhost:5173/api/staffs/${id}`);
+              // const response = await fetch('https://yolohome-homanhquan-api.onrender.com/dashboard');
+              if (!response.ok) {
+                throw new Error('Failed to fetch data');
+              }
+              const data = await response.json();
+              setManagers(data);
+            } catch (error) {
+              console.error('Error fetching data:', error);
+            }
+          };
+      
+          // Fetch data initially
+          fetchData();
+
         const fetchData2 = async () => {
             try {
               const response = await fetch('https://localhost:5173/api/orders');
@@ -147,32 +165,34 @@ const Ma_Settings = () => {
             </div>
             */}
         <div className="mt-4">
-            <div className="insights">
-            <div className="expenses">
-                <span className="material-symbols-outlined"> manage_accounts </span>
-                <div className="middle">
-                <div className="left">
-                    <h1 style={{marginTop: '10px'}}>Change information</h1>
-                    <h3 style={{fontSize: '5px'}}>Click this button to change your information:</h3>
-                    <a href="/managers/changeinfo/{{userID}}">
-                    <button style={{marginTop: '10px'}} type="button" className="btn btn-primary">Click here</button>
-                    </a>
+            {managers && (
+                <div className="insights">
+                <div className="expenses">
+                    <span className="material-symbols-outlined"> manage_accounts </span>
+                    <div className="middle">
+                    <div className="left">
+                        <h1 style={{marginTop: '10px'}}>Change information</h1>
+                        <h3 style={{fontSize: '5px'}}>Click this button to change your information:</h3>
+                        <a href={`/managers/changeinfo/${managers.id}`}>
+                        <button style={{marginTop: '10px'}} type="button" className="btn btn-primary">Click here</button>
+                        </a>
+                    </div>
+                    </div>
+                </div>
+                <div className="income" style={{height: '220px'}}>
+                    <span className="material-symbols-outlined"> logout </span>
+                    <div className="middle">
+                    <div className="left">
+                        <h1 style={{marginTop: '10px'}}>Sign out</h1>
+                        <h3>Click this button to sign out:</h3>
+                        <a href="/logout">
+                        <button style={{marginTop: '10px'}} type="button" className="btn btn-primary">Click here</button>
+                        </a>
+                    </div>
+                    </div>        
                 </div>
                 </div>
-            </div>
-            <div className="income" style={{height: '220px'}}>
-                <span className="material-symbols-outlined"> logout </span>
-                <div className="middle">
-                <div className="left">
-                    <h1 style={{marginTop: '10px'}}>Sign out</h1>
-                    <h3>Click this button to sign out:</h3>
-                    <a href="/logout">
-                    <button style={{marginTop: '10px'}} type="button" className="btn btn-primary">Click here</button>
-                    </a>
-                </div>
-                </div>        
-            </div>
-            </div>
+            )}
         </div>
         </main>
         <div className="right">

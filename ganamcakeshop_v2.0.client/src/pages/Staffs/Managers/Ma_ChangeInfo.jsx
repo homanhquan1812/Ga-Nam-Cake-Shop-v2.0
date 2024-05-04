@@ -3,8 +3,26 @@ import Ma_ChangeInfosHead from '../../../components/Staffs/Managers/Ma_ChangeInf
 
 const Ma_ChangeInfo = () => {
   const [orders, setOrders] = useState([]);
+  const [managers, setManagers] = useState([]);
 
     useEffect(() => {
+      const fetchData2 = async () => {
+        try {
+          const response = await fetch(`https://localhost:5173/api/staffs/${id}`);
+          // const response = await fetch('https://yolohome-homanhquan-api.onrender.com/dashboard');
+          if (!response.ok) {
+            throw new Error('Failed to fetch data');
+          }
+          const data = await response.json();
+          setManagers(data);
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+      };
+  
+      // Fetch data initially
+      fetchData2();
+
         const fetchData = async () => {
           try {
             const response = await fetch('https://localhost:5173/api/orders');
@@ -151,33 +169,35 @@ const Ma_ChangeInfo = () => {
           <div className="insights">
             <div className="sales">
               <h1>Change your information here:</h1>
-              <form method="POST" action="/managers/changeinfo/{{info._id}}?_method=PUT">
+              {managers && (
+                <form method="POST" action="/managers/changeinfo/{{managers._id}}?_method=PUT">
                 <div className="form-group">
                   <label htmlFor="name">Full Name</label>
-                  <input type="type" className="form-control" defaultValue="{{info.csw_name}}" id="csw_name" name="csw_name" />
+                  <input type="type" className="form-control" defaultValue={managers.csw_name} id="csw_name" name="csw_name" />
                 </div>
                 <div className="form-group">
                   <label htmlFor="description">Gender</label>
-                  <input type="type" className="form-control" defaultValue="{{info.csw_gender}}" id="csw_gender" name="csw_gender" disabled />
+                  <input type="type" className="form-control" defaultValue={managers.csw_gender} id="csw_gender" name="csw_gender" disabled />
                 </div>
                 <div className="form-group">
                   <label htmlFor="description">Phone Number</label>
-                  <input type="type" className="form-control" defaultValue="{{info.csw_phonenumber}}" id="csw_phonenumber" name="csw_phonenumber" />
+                  <input type="type" className="form-control" defaultValue={managers.csw_phonenumber} id="csw_phonenumber" name="csw_phonenumber" />
                 </div>
                 <div className="form-group">
                   <label htmlFor="csw_username">Username</label>
-                  <input type="type" className="form-control" defaultValue="{{info.csw_username}}" id="csw_username" name="csw_username" disabled />
+                  <input type="type" className="form-control" defaultValue={managers.csw_username} id="csw_username" name="csw_username" disabled />
                 </div>
                 <div className="form-group">
                   <label htmlFor="videoID">Password</label>
-                  <input type="type" className="form-control" defaultValue="{{info.csw_password}}" id="csw_password" name="csw_password" />
+                  <input type="type" className="form-control" defaultValue={managers.csw_password} id="csw_password" name="csw_password" />
                 </div>
                 <div className="form-group">
                   <label htmlFor="level">Email Address</label>
-                  <input type="type" className="form-control" defaultValue="{{info.csw_emailaddress}}" id="csw_emailaddress" name="csw_emailaddress" />
+                  <input type="type" className="form-control" defaultValue={managers.csw_emailaddress} id="csw_emailaddress" name="csw_emailaddress" />
                 </div>
                 <button type="submit" className="btn btn-primary">Save changes</button>
               </form>
+              )}
               {/*
                     <div class="showall">
                         <a href="#">Show All</a>

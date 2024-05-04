@@ -90,7 +90,7 @@ const ProductDetails = () => {
                 <button className="btnLogin-popup" onclick="window.location.href='../logout'">LOGOUT</button>
                 </li>
                 <li className="nav-item">
-                        <button className="btnLogin-popup" onClick={() => window.location.href='login'}>LOGIN</button>
+                        <button className="btnLogin-popup" onClick={() => window.location.href='../login'}>LOGIN</button>
                     </li>
             </ul>
             </div>
