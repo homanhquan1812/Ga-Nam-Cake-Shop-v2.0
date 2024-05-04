@@ -1,10 +1,24 @@
 import { React, useState, useEffect } from 'react';
 import Ma_NotesHead from '../../../components/Staffs/Managers/Ma_NotesHead'
 import GeneralScript from '../../../components/GeneralScript';
+import axios from 'axios';
 
 const Ma_Notes = () => {
     const [notes, setNotes] = useState([]);
     const [orders, setOrders] = useState([]);
+    const [noteID, setNoteID] = useState([]);
+
+    const handleDeleteModalShow = (id) => {
+        setNoteID(id);
+    };
+    const handleDeleteCourse = async () => {
+        try {
+            const response = await axios.delete(`/api/notes/${noteID}`);
+            console.log(response.data); // handle success response
+        } catch (error) {
+            console.error('Error deleting course:', error); // handle error
+        }
+    };
 
     useEffect(() => {
         const fetchData = async () => {
@@ -42,10 +56,13 @@ const Ma_Notes = () => {
           fetchData2();
 
           // Fetch data every 5 seconds
-        const intervalId = setInterval(fetchData2, 5000);
+    const intervalId = setInterval(() => {
+        fetchData();
+        fetchData2();
+    }, 2000);
 
-        // Cleanup function
-        return () => clearInterval(intervalId);
+    // Cleanup function
+    return () => clearInterval(intervalId);
       }, []);
 
       const countRow = (orders) => {
@@ -201,7 +218,11 @@ const Ma_Notes = () => {
                                 <tr key={note.id}>
                                 <td>{++counter}</td>
                                 <td>{note.csw_notes}</td>
-                                <td><button type="button" class="btn btn-danger"  data-toggle="modal" data-id={note.id} data-target="#delete-course-modal">Remove</button></td>
+                                <td>
+                                    <button type="button" className="btn btn-danger" data-toggle="modal" data-id={note.id} data-target="#delete-course-modal" onClick={() => handleDeleteModalShow(note.id)}>
+                                        Remove
+                                    </button>
+                                </td>
                             </tr>
                             )
                         ))
@@ -230,7 +251,7 @@ const Ma_Notes = () => {
                 <p>Are you sure that you want to delete this note?</p>
             </div>
             <div className="modal-footer">
-                <button id="btn-delete-course" type="button" className="btn btn-primary">Yes</button>
+            <button id="btn-delete-course" data-dismiss="modal" type="button" className="btn btn-primary" onClick={handleDeleteCourse}>Yes</button>
                 <button type="button" className="btn btn-danger" data-dismiss="modal">No</button>
             </div>
             </div>

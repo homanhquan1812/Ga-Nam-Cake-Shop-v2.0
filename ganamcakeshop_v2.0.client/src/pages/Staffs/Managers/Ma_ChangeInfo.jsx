@@ -1,9 +1,11 @@
 import { React, useState, useEffect } from 'react';
 import Ma_ChangeInfosHead from '../../../components/Staffs/Managers/Ma_ChangeInfosHead'
+import { useParams } from 'react-router-dom';
 
 const Ma_ChangeInfo = () => {
   const [orders, setOrders] = useState([]);
   const [managers, setManagers] = useState([]);
+  const { id } = useParams(); // Accessing the id parameter from the URL
 
     useEffect(() => {
       const fetchData2 = async () => {

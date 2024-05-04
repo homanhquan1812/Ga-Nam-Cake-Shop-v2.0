@@ -1,9 +1,24 @@
 import { React, useState, useEffect } from 'react';
 import Ma_CustomersHead from '../../../components/Staffs/Managers/Ma_CustomersHead'
+import axios from 'axios'
+import GeneralScript from '../../../components/GeneralScript';
 
 const Ma_Customers = () => {
     const [customers, setCustomers] = useState([]);
     const [orders, setOrders] = useState([]);
+    const [customerID, setCustomerID] = useState(null);
+
+    const handleDeleteModalShow = (id) => {
+        setCustomerID(id);
+    };
+    const handleDeleteCourse = async () => {
+        try {
+            const response = await axios.delete(`/api/customers/${customerID}`);
+            console.log(response.data); // handle success response
+        } catch (error) {
+            console.error('Error deleting course:', error); // handle error
+        }
+    };
 
     useEffect(() => {
         const fetchData = async () => {
@@ -41,10 +56,10 @@ const Ma_Customers = () => {
           fetchData2();
 
           // Fetch data every 5 seconds
-        const intervalId = setInterval(fetchData2, 5000);
-
-        // Cleanup function
-        return () => clearInterval(intervalId);
+    const intervalId = setInterval(() => {
+        fetchData();
+        fetchData2();
+    }, 2000);
       }, []);
 
       const countRow = (orders) => {
@@ -66,6 +81,7 @@ const Ma_Customers = () => {
   return (
     <div>
     <Ma_CustomersHead />
+    <GeneralScript />
     {/* Header */}
     <header className="p-3 bg-dark text-white">
         <div className="header-container">
@@ -201,7 +217,11 @@ const Ma_Customers = () => {
                                 <td>{customer.csw_address}</td>
                                 <td>{customer.csw_username}</td>
                                 <td>{customer.csw_emailaddress}</td>
-                                <td><button type="button" class="btn btn-danger"  data-toggle="modal" data-id={customer.id} data-target="#delete-course-modal">Remove</button></td>
+                                <td>
+                                    <button type="button" className="btn btn-danger" data-toggle="modal" data-id={customer.id} data-target="#delete-course-modal" onClick={() => handleDeleteModalShow(customer.id)}>
+                                        Remove
+                                    </button>
+                                </td>
                             </tr>
                             )
                         ))
@@ -230,7 +250,7 @@ const Ma_Customers = () => {
                 <p>Are you sure that you want to delete this customer?</p>
             </div>
             <div className="modal-footer">
-                <button id="btn-delete-course" type="button" className="btn btn-primary">Yes</button>
+                <button id="btn-delete-course" data-dismiss="modal" type="button" className="btn btn-primary" onClick={handleDeleteCourse}>Yes</button>
                 <button type="button" className="btn btn-danger" data-dismiss="modal">No</button>
             </div>
             </div>

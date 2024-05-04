@@ -35,7 +35,8 @@ const GeneralScript = () => {
 
       // Additional scripts
       'https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js',
-      'https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js'
+      'https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js',
+      'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js'
     ];
 
     const loadScripts = async () => {
@@ -51,87 +52,105 @@ const GeneralScript = () => {
     loadScripts();
 
     $("#discardInfoBtn, #saveInfoBtn").hide();
+    $("#discardAddedInfoBtn, #saveAddedInfoBtn").hide();
+    $(".add-data").hide();
+    $(".currentPosition").show();
+    $(".changeCurrentPosition").hide();
+    $(".currentDepartment").show();
+    $(".changeCurrentDepartment").hide();
+    $('#discardNoteBtn').hide();
+    $('#discardProductBtn').hide();
+    $('#saveProductBtn').hide();
+    $('#saveNoteBtn').hide();
+
+    $(document).ready(function () {
+        $("#changeInfoBtn").click(function () {     
+            $(".currentPosition").toggle();
+            $(".changeCurrentPosition").toggle();
+            $(".currentDepartment").toggle();
+            $(".changeCurrentDepartment").toggle();
+        });
+
+        $('#discardInfoBtn').click(function () {
+            $("#discardInfoBtn, #saveInfoBtn").hide();
+            $("#changeInfoBtn, #addInfoBtn").show();
+        });
+
+        $('#discardNoteBtn').click(function () {
+          $("#discardNoteBtn, #saveNoteBtn").hide();
+          $('#addNoteBtn').show();
+          $(".add-data").hide();
+          $('#discardNoteBtn').hide();
+      });
+        // 
+
+        $("#changeInfoBtn").click(function () {
+            $("#discardInfoBtn, #saveInfoBtn").show();
+            $("#changeInfoBtn, #addInfoBtn").hide();
+            var element = document.getElementById('saveInfoBtn');
+            element.style.margin = null;
+            document.getElementById('warning').style.display = '';
+        });
+
+        $('#addInfoBtn').click(function() {
+            $("#discardInfoBtn, #saveInfoBtn, #changeInfoBtn, #addInfoBtn").hide();
+            $("#discardAddedInfoBtn, #saveAddedInfoBtn").show();
+            var element = document.getElementById('saveAddedInfoBtn');
+            element.style.margin = null;
+            $(".add-data").show();
+        })
+
+        $('#addNoteBtn').click(function() {
+            $('#addNoteBtn').hide();
+            $(".add-data").show();
+            $('#discardNoteBtn').show();
+            $('#saveNoteBtn').show();
+            /* document.getElementById('warning2').style.display = ''; */
+            var element = document.getElementById('saveNoteBtn');
+            element.style.margin = null;
+        })
+
+        $('#addProductBtn').click(function() {
+            $('#addProductBtn').hide();
+            $(".add-data").show();
+            $('#discardProductBtn').show();
+            $('#saveProductBtn').show();
+            $('#product-searchbar').hide();
+            document.getElementById('warning3').style.display = '';
+        })
+
+        $('#discardProductBtn').click(function() {
+            $('#discardProductBtn').hide();
+            $(".add-data").hide();
+            $('#addProductBtn').show();
+            $('#saveProductBtn').hide();
+        })
+
+        $('#discardInfoBtn').click(function () {
+          $(".currentPosition").toggle();
+            $(".changeCurrentPosition").toggle();
+            $(".currentDepartment").toggle();
+            $(".changeCurrentDepartment").toggle();
+        });
+
+        $('#discardAddedInfoBtn').click(function () {
+            $("#discardInfoBtn, #saveInfoBtn").hide();
+            $("#changeInfoBtn, #addInfoBtn").show();
             $("#discardAddedInfoBtn, #saveAddedInfoBtn").hide();
             $(".add-data").hide();
-            $(".currentPosition").show();
-            $(".changeCurrentPosition").hide();
-            $(".currentDepartment").show();
-            $(".changeCurrentDepartment").hide();
-            $('#discardNoteBtn').hide();
-            $('#discardProductBtn').hide();
-            $('#saveProductBtn').hide();
-            $('#saveNoteBtn').hide();
+        });
 
-            $(document).ready(function () {
-                $("#changeInfoBtn").click(function () {     
-                    $(".currentPosition").toggle();
-                    $(".changeCurrentPosition").toggle();
-                    $(".currentDepartment").toggle();
-                    $(".changeCurrentDepartment").toggle();
-                });
-                // 
+        $('#saveAddedInfoBtn').click(function () {
+            $(".add-data").hide();
+            $('#saveAddedInfoBtn, #discardAddedInfoBtn').hide();
+            $("#addInfoBtn, #changeInfoBtn").show();
+        })
 
-                $("#changeInfoBtn").click(function () {
-                    $("#discardInfoBtn, #saveInfoBtn").show();
-                    $("#changeInfoBtn, #addInfoBtn").hide();
-                    var element = document.getElementById('saveInfoBtn');
-                    element.style.margin = null;
-                    document.getElementById('warning').style.display = '';
-                });
-
-                $('#addInfoBtn').click(function() {
-                    $("#discardInfoBtn, #saveInfoBtn, #changeInfoBtn, #addInfoBtn").hide();
-                    $("#discardAddedInfoBtn, #saveAddedInfoBtn").show();
-                    var element = document.getElementById('saveAddedInfoBtn');
-                    element.style.margin = null;
-                    $(".add-data").show();
-                })
-
-                $('#addNoteBtn').click(function() {
-                    $('#addNoteBtn').hide();
-                    $(".add-data").show();
-                    $('#discardNoteBtn').show();
-                    $('#saveNoteBtn').show();
-                    /* document.getElementById('warning2').style.display = ''; */
-                    var element = document.getElementById('saveNoteBtn');
-                    element.style.margin = null;
-                })
-
-                $('#addProductBtn').click(function() {
-                    $('#addProductBtn').hide();
-                    $(".add-data").show();
-                    $('#discardProductBtn').show();
-                    $('#saveProductBtn').show();
-                    $('#product-searchbar').hide();
-                    document.getElementById('warning3').style.display = '';
-                })
-
-                $('#discardProductBtn').click(function() {
-                    document.getElementById('warning3').style.display = 'none';
-                    $('#discardProductBtn').hide();
-                    $(".add-data").hide();
-                    $('#addProductBtn').show();
-                    $('#saveProductBtn').hide();
-                })
-
-                $('#discardAddedInfoBtn').click(function () {
-                    $("#discardInfoBtn, #saveInfoBtn").hide();
-                    $("#changeInfoBtn, #addInfoBtn").show();
-                    $("#discardAddedInfoBtn, #saveAddedInfoBtn").hide();
-                    $(".add-data").hide();
-                });
-
-                $('#saveAddedInfoBtn').click(function () {
-                    $(".add-data").hide();
-                    $('#saveAddedInfoBtn, #discardAddedInfoBtn').hide();
-                    $("#addInfoBtn, #changeInfoBtn").show();
-                })
-
-                $('#saveInfoBtn').click(function () {
-                    $('#saveInfoBtn, #discardInfoBtn').hide();
-                    $("#addInfoBtn, #changeInfoBtn").show();
-                })
-            });         
+        $('#saveInfoBtn').click(function () {
+            $('#saveInfoBtn, #discardInfoBtn').hide();
+            $("#addInfoBtn, #changeInfoBtn").show();
+        })
+    });
 
             document.querySelectorAll(".addToCartForm").forEach(function(form) {
                 form.addEventListener("submit", function(event) {

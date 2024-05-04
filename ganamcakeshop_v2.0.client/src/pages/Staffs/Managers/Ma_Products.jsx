@@ -192,7 +192,7 @@ const Ma_Products = () => {
                 <div className="left">
                     <button type="button" className="btn btn-primary" id="addProductBtn">Add more products</button>
                     <button style={{marginLeft: '0px'}} type="submit" className="btn btn-success" id="saveProductBtn" form="addProductForm">Save this product</button>
-                    <button style={{marginLeft: '10px'}} type="button" className="btn btn-danger" id="discardProductBtn" onclick="window.location.href='/managers/products'">Discard this product</button>
+                    <button style={{marginLeft: '10px'}} type="button" className="btn btn-danger" id="discardProductBtn">Discard this product</button>
                 </div>
                 </div>
                 <input type="text" id="product-searchbar" onKeyUp={myFunction} placeholder="Search for products." />

@@ -1,10 +1,24 @@
 import { React, useState, useEffect } from 'react';
 import Ma_StaffsHead from '../../../components/Staffs/Managers/Ma_StaffsHead'
 import GeneralScript from '../../../components/GeneralScript';
+import axios from 'axios';
 
 const Ma_Staffs = () => {
     const [staffs, setStaffs] = useState([]);
     const [orders, setOrders] = useState([]);
+    const [staffID, setStaffID] = useState([]);
+
+    const handleDeleteModalShow = (id) => {
+        setStaffID(id);
+    };
+    const handleDeleteCourse = async () => {
+        try {
+            const response = await axios.delete(`/api/staffs/${staffID}`);
+            console.log(response.data); // handle success response
+        } catch (error) {
+            console.error('Error deleting course:', error); // handle error
+        }
+    };
 
     useEffect(() => {
         const fetchData = async () => {
@@ -42,7 +56,10 @@ const Ma_Staffs = () => {
           fetchData2();
 
           // Fetch data every 5 seconds
-        const intervalId = setInterval(fetchData2, 5000);
+    const intervalId = setInterval(() => {
+        fetchData();
+        fetchData2();
+    }, 2000);
 
         // Cleanup function
         return () => clearInterval(intervalId);
@@ -164,9 +181,9 @@ const Ma_Staffs = () => {
                     <button type="button" className="btn btn-primary" id="addInfoBtn">Add more members</button>
                     <button style={{marginLeft: '10px'}} type="button" className="btn btn-warning" id="changeInfoBtn">Change member's role</button>                                  
                     <button style={{marginLeft: '10px'}} type="submit" className="btn btn-success" id="saveInfoBtn">Save all changes</button>                           
-                    <button style={{marginLeft: '10px'}} type="button" className="btn btn-danger" id="discardInfoBtn" onclick="window.location.href='/managers/staffs'">Discard all changes</button>
+                    <button style={{marginLeft: '10px'}} type="button" className="btn btn-danger" id="discardInfoBtn">Discard all changes</button>
                     <button style={{marginLeft: '10px'}} type="submit" className="btn btn-success" id="saveAddedInfoBtn" form="addInfoForm">Save this member</button>
-                    <button style={{marginLeft: '10px'}} type="button" className="btn btn-danger" id="discardAddedInfoBtn" onclick="window.location.href='/managers/staffs'">Discard</button>
+                    <button style={{marginLeft: '10px'}} type="button" className="btn btn-danger" id="discardAddedInfoBtn">Discard</button>
                 </div>       
                 </div>
                 {/*
@@ -228,7 +245,7 @@ const Ma_Staffs = () => {
                                     </td>
                                     <td>
                                         {staff.csw_position !== "Manager" &&
-                                            <button type="button" className="btn btn-danger" data-toggle="modal" data-id={staff._id} data-target="#delete-course-modal">Remove</button>
+                                            <button type="button" className="btn btn-danger" data-toggle="modal" data-id={staff.id} data-target="#delete-course-modal" onClick={() => handleDeleteModalShow(staff.id)}>Remove</button>
                                         }
                                     </td>
                                 </tr>
@@ -261,7 +278,7 @@ const Ma_Staffs = () => {
                 <p>Are you sure that you want to delete this member?</p>
             </div>
             <div className="modal-footer">
-                <button id="btn-delete-course" type="button" className="btn btn-primary">Yes</button>
+            <button id="btn-delete-course" data-dismiss="modal" type="button" className="btn btn-primary" onClick={handleDeleteCourse}>Yes</button>
                 <button type="button" className="btn btn-danger" data-dismiss="modal">No</button>
             </div>
             </div>

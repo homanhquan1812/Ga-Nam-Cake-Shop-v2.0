@@ -30,5 +30,11 @@ namespace GaNamCakeShop_v2._0.Server.Services
 
         // Delete a Customer
         public async Task RemoveAsync(string id) => await _customersCollection.DeleteOneAsync(x => x.Id == id);
+
+        public async Task<Customers> GetByUserNameAsync(string username)
+        {
+            // Query and return the customer object based on the username
+            return await _customersCollection.Find(c => c.csw_username == username).FirstOrDefaultAsync();
+        }
     }
 }

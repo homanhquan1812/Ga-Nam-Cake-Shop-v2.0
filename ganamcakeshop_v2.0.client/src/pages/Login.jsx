@@ -11,6 +11,29 @@ const Login = () => {
     const [errorMessage, setErrorMessage] = useState('');
     const navigateTo = useNavigate();
 
+    const submit = async (e) => {
+        e.preventDefault();
+        try {
+          const response = await fetch('https://localhost:5173/api/customers', {
+          // const response = await fetch('https://yolohome-homanhquan-api.onrender.com/login', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ csw_username, csw_password }),
+          });
+    
+          if (response.ok) {
+            // Redirect to the dashboard or any other page after successful login
+            console.log(response)
+          } else {
+            setErrorMessage('Invalid username or password.');
+          }
+        } catch (error) {
+          console.log(error) // Set error message if login fails
+        }
+      };
+
     function myFunction3() {
         var x = document.getElementById("password");
         var changeLogo = document.getElementById("changeLogo")
