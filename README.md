@@ -18,10 +18,10 @@ This website is designed to facilitate convenient online ordering from our cake 
 
 # Version information
 - Revamped by <b>Hồ Mạnh Quân</b>.
-- Fixed "Managers can't remove any member(s) in Members section." bug.
+- Fixed an issue whereby <b>Managers can't remove any member(s) in Members section</b>.
 - Removed both <b>Remember me</b> and <b>Forgot password</b>.
 - Added Real-time data.
-- Added bug fixes and performance improvements.
+- Added many other bug fixes and performance improvements.
 - Old version: [Click here](https://github.com/homanhquan1812/Ga-Nam-Cake-Shop).
 
 # Development status
