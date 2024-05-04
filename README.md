@@ -12,8 +12,6 @@ This website is designed to facilitate convenient online ordering from our cake 
 2. Back-end: <b>ASP.NET Core</b>.
 3. Database: <b>Microsoft SQL Server</b>.
 
-> Basically, hosting a website that people can access can't depend on an offline database. That's why our team uses MongoDB Atlas to let it connect to Render, so that the website can work perfectly.
-
 # Version information
 - Revamped by <b>Hồ Mạnh Quân</b>.
 - Removed both <b>Remember me</b> and <b>Forgot password</b>.
@@ -22,22 +20,11 @@ This website is designed to facilitate convenient online ordering from our cake 
 - Old version: [Click here](https://github.com/homanhquan1812/Ga-Nam-Cake-Shop).
 
 # Development status
-> Temporarily stopped.
+> Under development.
 
 # How to use
-1. Open this project solution on <b>Visual Studio</b>.
-2. Extract <b>JSON Data.zip</b> and insert all JSON files into your MongoDB database like this:
-
-   ![image](https://github.com/homanhquan1812/Ga-Nam-Cake-Shop-v2.0/assets/130955957/44f42d70-9cb3-427c-b7d2-0d8765108159)
-
-3. Run the project.
-4. Use these accounts to log in to the website:
-   - <b>Customer</b>: maimai456 - Mai@456#1990
-   - <b>Employee</b>: nguyenanhthao123 - Thao#123@2022
-   - <b>Manager</b>: tranvanan321 - An#321@1985
 
 # Known bugs
-1. When there's no order in Staffs' pages, the number by <b>New Orders</b> still shows 0 even though it's been set to <b>display: none</b>.
 
 # Features that need to be added
 
