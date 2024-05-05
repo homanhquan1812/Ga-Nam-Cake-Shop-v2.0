@@ -14,8 +14,6 @@ This website is designed to facilitate convenient online ordering from our cake 
 4. Cloud Database: <b>MongoDB Atlas</b>.
 5. Hosting: (None).
 
-> Basically, hosting a website that people can access can't depend on an offline database. That's why our team uses MongoDB Atlas to let it connect to Render, so that the website can work perfectly.
-
 # Version information
 - Revamped by <b>Hồ Mạnh Quân</b>.
 - Fixed an issue whereby <b>Managers can't remove any member(s) in Members section</b>.
