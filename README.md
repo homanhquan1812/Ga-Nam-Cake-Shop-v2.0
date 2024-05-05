@@ -26,6 +26,7 @@ This website is designed to facilitate convenient online ordering from our cake 
 
 # Known bugs
 1. When there's no order in Staffs' pages, the number by <b>New Orders</b> still shows 0 even though it's been set to <b>display: none</b>.
+2. JQuery scripts work abnormally in <b>Staffs section</>.
 
 # Features that need to be added
 1. Responsive design.
