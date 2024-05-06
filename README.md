@@ -15,7 +15,6 @@ This website is designed to facilitate convenient online ordering from our cake 
 5. Hosting: (None).
 
 # Version information
-- Revamped by <b>Hồ Mạnh Quân</b>.
 - Fixed an issue whereby <b>Managers can't remove any member(s) in Members section</b>.
 - Removed both <b>Remember me</b> and <b>Forgot password</b> in Login page.
 - Added Real-time data.
