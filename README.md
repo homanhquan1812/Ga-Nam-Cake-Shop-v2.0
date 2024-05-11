@@ -8,8 +8,8 @@ This website is designed to facilitate convenient online ordering from our cake 
 (None)
 
 # Technologies used to build this website
-1. Front-end: <b>ReactJS</b>.
-2. Back-end: <b>ASP.NET Core</b>.
+1. Frontend: <b>ReactJS</b>.
+2. Backend: <b>ASP.NET Core</b>.
 3. Database: <b>MongoDB</b>.
 4. Cloud Database: <b>MongoDB Atlas</b>.
 5. Hosting: (None).
