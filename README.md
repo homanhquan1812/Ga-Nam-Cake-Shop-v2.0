@@ -30,7 +30,7 @@ This website is designed to facilitate convenient online ordering from our cake 
 1. Responsive design.
 
 # Development status
-> Under development.
+> Suspended.
 
 # How to use
 1. Open this project solution on <b>Visual Studio</b>.
